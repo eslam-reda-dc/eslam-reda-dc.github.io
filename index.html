@@ -1,0 +1,1292 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eslam Reda — Professional Portfolio</title>
+  <meta name="description" content="Eslam Reda – Senior Document Controller | Portfolio showcasing expertise in document management systems, process optimization, and data-driven reporting." />
+  <meta name="keywords" content="Eslam Reda, Document Controller, Aconex, SharePoint, Power BI, Python, Construction, Real Estate, Document Management, Project Management, مراقب وثائق, أكونكس, إدارة المشاريع" />
+  
+  <!-- Open Graph Meta Tags for Social Sharing -->
+  <meta property="og:title" content="Eslam Reda — Professional Portfolio" />
+  <meta property="og:description" content="Senior Document Controller specializing in optimizing document workflows using Aconex, SharePoint, and Power BI." />
+  <meta property="og:image" content="images/profile.jpg" /> <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+  <meta property="og:url" content="https://eslam-reda-dc.github.io" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📑</text></svg>">
+
+  <!-- Google Fonts: Inter & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- AOS (scroll animations) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
+  <!-- Tailwind CSS with Typography Plugin -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+
+  <style>
+    /* Custom CSS for base styles and complex components */
+    :root {
+      --font-family-en: 'Inter', sans-serif;
+      --font-family-ar: 'Tajawal', sans-serif;
+    }
+
+    html.dark {
+        --bg-primary: #0d1117;
+        --bg-secondary: #161b22;
+        --bg-card: #1c2128;
+        --text-primary: #e6edf3;
+        --text-secondary: #8b949e;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --accent-primary: #58a6ff;
+        --accent-secondary: #a78bfa;
+    }
+
+    html.light {
+        --bg-primary: #f6f8fa;
+        --bg-secondary: #ffffff;
+        --bg-card: #ffffff;
+        --text-primary: #24292f;
+        --text-secondary: #57606a;
+        --border-color: rgba(0, 0, 0, 0.1);
+        --accent-primary: #0969da;
+        --accent-secondary: #8250df;
+    }
+
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: var(--font-family-en);
+        -webkit-font-smoothing: antialiased;
+        scroll-behavior: smooth;
+        background-image: radial-gradient(circle at 1px 1px, rgba(139, 148, 158, 0.1) 1px, transparent 0);
+        background-size: 25px 25px;
+        /* Add padding to the top to prevent content from being hidden by the fixed nav */
+        padding-top: 80px; 
+    }
+    
+    html[lang="ar"] body, html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4, html[lang="ar"] button, html[lang="ar"] a, html[lang="ar"] span, html[lang="ar"] p, html[lang="ar"] div {
+        font-family: var(--font-family-ar);
+        font-weight: 500;
+    }
+    html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] .font-bold {
+        font-weight: 700;
+    }
+
+    .section-title {
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color);
+    }
+    .section-title svg {
+        color: var(--accent-primary);
+    }
+    
+    /* Fixed Nav */
+    #sticky-nav {
+      top: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* KPI Progress Bar */
+    .kpi-progress-bg {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+    }
+    .kpi-progress-bar {
+        background: linear-gradient(90deg, var(--accent-secondary), var(--accent-primary));
+        transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Modal RTL support */
+    #detailsModalBody.prose, #experienceModalBody.prose, #geminiModalBody.prose, #knowledgeModalBody.prose {
+        text-align: initial;
+    }
+    html[dir="rtl"] #detailsModalBody.prose,
+    html[dir="rtl"] #experienceModalBody.prose,
+    html[dir="rtl"] #geminiModalBody.prose,
+    html[dir="rtl"] #knowledgeModalBody.prose {
+        text-align: right;
+    }
+    html[dir="rtl"] #detailsModalBody ul,
+    html[dir="rtl"] #experienceModalBody ul,
+    html[dir="rtl"] #geminiModalBody ul,
+    html[dir="rtl"] #knowledgeModalBody ul {
+        padding-right: 1.25rem;
+        padding-left: 0;
+    }
+
+    /* Gemini Loader */
+    .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid var(--text-primary);
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .toast {
+        transition: opacity 0.3s, transform 0.3s;
+    }
+  </style>
+
+  <script>
+    // Tailwind config
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          typography: (theme) => ({
+            DEFAULT: {
+              css: {
+                '--tw-prose-body': 'var(--text-secondary)',
+                '--tw-prose-headings': 'var(--text-primary)',
+                '--tw-prose-bold': 'var(--text-primary)',
+                '--tw-prose-bullets': 'var(--text-secondary)',
+                '--tw-prose-pre-bg': 'var(--bg-secondary)',
+                '--tw-prose-code': 'var(--text-primary)',
+              },
+            },
+          }),
+          colors: {
+            'bg-primary': 'var(--bg-primary)',
+            'bg-secondary': 'var(--bg-secondary)',
+            'bg-card': 'var(--bg-card)',
+            'text-primary': 'var(--text-primary)',
+            'text-secondary': 'var(--text-secondary)',
+            'border-color': 'var(--border-color)',
+            'accent-primary': 'var(--accent-primary)',
+            'accent-secondary': 'var(--accent-secondary)',
+          },
+          fontFamily: {
+            en: ['Inter', 'sans-serif'],
+            ar: ['Tajawal', 'sans-serif'],
+          }
+        }
+      },
+    }
+  </script>
+</head>
+<body class="bg-bg-primary text-text-primary">
+
+  <!-- Fixed Navigation -->
+  <nav id="sticky-nav" class="fixed w-[95%] max-w-4xl left-1/2 -translate-x-1/2 z-50 bg-bg-card/70 backdrop-blur-lg border border-border-color rounded-full px-4 py-3 flex items-center justify-between">
+      <div class="hidden md:flex items-center gap-4">
+          <a href="#about" class="text-sm font-semibold hover:text-accent-primary transition-colors" data-key="nav_about">About</a>
+          <a href="#experience" class="text-sm font-semibold hover:text-accent-primary transition-colors" data-key="nav_experience">Experience</a>
+          <a href="#portfolio" class="text-sm font-semibold hover:text-accent-primary transition-colors" data-key="nav_portfolio">Portfolio</a>
+          <a href="#knowledge" class="text-sm font-semibold hover:text-accent-primary transition-colors" data-key="nav_knowledge">Knowledge Center</a>
+          <a href="#skills" class="text-sm font-semibold hover:text-accent-primary transition-colors" data-key="nav_skills">Skills</a>
+          <a href="#contact" class="text-sm font-semibold hover:text-accent-primary transition-colors" data-key="nav_contact">Contact</a>
+      </div>
+      <div class="flex-1 md:flex-none flex justify-center md:justify-start">
+        <a href="#" class="text-lg font-bold text-accent-primary">E.R.</a>
+      </div>
+      <div class="flex items-center gap-2 md:gap-4">
+          <button id="theme-toggle" title="Toggle theme" class="w-10 h-10 flex items-center justify-center rounded-full bg-bg-secondary hover:bg-border-color transition-colors">
+              <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 016.465 3.636l.707.707a1 1 0 01-1.414 1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1z"></path></svg>
+              <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+          </button>
+          <div id="langSwitch" class="cursor-pointer text-sm font-bold w-10 h-10 flex items-center justify-center rounded-full bg-bg-secondary hover:bg-border-color transition-colors" title="Switch language">EN</div>
+      </div>
+  </nav>
+
+  <div class="max-w-4xl mx-auto px-4 py-8 md:py-12">
+
+    <!-- HEADER -->
+    <header class="text-center pt-8 pb-12" role="banner">
+        <div class="inline-block relative mb-4">
+            <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+            <img id="profilePhoto" class="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-4 border-bg-secondary shadow-lg" src="images/profile.jpg" alt="Eslam Reda Profile Photo" />
+        </div>
+        <h1 class="text-3xl md:text-4xl font-extrabold" data-key="name">Eslam Reda</h1>
+        <p class="text-lg md:text-xl text-text-secondary mt-1" data-key="jobTitle">Senior Document Controller</p>
+        <p class="max-w-2xl mx-auto mt-4 text-base" data-key="tagline">“Building efficient document control systems and supporting project success through data-driven decision making.”</p>
+        <div class="mt-6 flex flex-wrap justify-center items-center gap-3">
+            <a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-accent-primary text-white font-semibold hover:opacity-90 transition-opacity text-sm" href="ESLAM REDA-DC-CV-EN.pdf" download="Eslam Reda CV (EN).pdf" data-key="downloadCV_EN">Download CV (EN)</a>
+            <a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-bg-card border border-border-color font-semibold hover:bg-bg-secondary transition-colors text-sm" href="ESLAM REDA-DC-CV-AR.pdf" download="إسلام رضا - سيرة ذاتية.pdf" data-key="downloadCV_AR">تحميل السيرة الذاتية (عربي)</a>
+            <a class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-bg-card border border-border-color hover:bg-bg-secondary transition-colors" href="https://www.linkedin.com/in/eslam-reda-eg/" target="_blank" rel="noopener" title="LinkedIn">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg>
+            </a>
+            <a class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors" href="https://wa.me/201111687891" target="_blank" rel="noopener" title="WhatsApp">
+                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413.003 6.556-5.338 11.891-11.893 11.891-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.885.002 2.024.63 3.965 1.739 5.618l-1.181 4.319 4.403-1.152zM12 4.138c4.341 0 7.874 3.533 7.874 7.874s-3.533 7.874-7.874 7.874S4.126 16.353 4.126 12s3.533-7.862 7.874-7.862zM15.246 13.939c-.193-.099-1.148-.565-1.328-.628-.18-.062-.312-.099-.444.099-.133.197-.502.628-.615.759-.113.133-.225.148-.413.049-.188-.099-1.258-.464-2.4-1.475-.889-.787-1.484-1.758-1.654-2.055-.17-.297-.018-.458.081-.611.088-.133.197-.225.297-.348.099-.123.133-.197.197-.33.063-.133.031-.248-.018-.348-.049-.099-.444-1.063-.609-1.455-.165-.392-.33-.337-.444-.342-.113-.005-.248-.005-.38-.005-.133 0-.348.049-.531.248-.182.197-.691.677-.691 1.654s.71 1.919.81 2.055c.099.133 1.397 2.136 3.38 2.991.478.205.84.329 1.124.418.478.152.904.129 1.246.08.38-.058 1.148-.464 1.313-.919.165-.455.165-.848.113-.919-.049-.07-.182-.112-.375-.21z"/></svg>
+            </a>
+            <button id="share-btn" title="Share" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-bg-card border border-border-color hover:bg-bg-secondary transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="portfolio-content" class="space-y-16 md:space-y-24">
+
+        <!-- Personal Information Section -->
+        <section id="personal-info" data-aos="fade-up">
+            <!-- This section content is unchanged -->
+            <h2 class="section-title text-2xl font-bold mb-6 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span data-key="personalInfoTitle">Personal Information</span>
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-bg-card p-4 rounded-lg border border-border-color flex items-center gap-4">
+                    <div class="w-10 h-10 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary" data-key="pi_phone_label">Phone</p>
+                        <p class="font-semibold text-sm md:text-base"><a href="tel:+201111687891" data-key="pi_phone_value">+20 111 168 7891</a></p>
+                    </div>
+                </div>
+                <div class="bg-bg-card p-4 rounded-lg border border-border-color flex items-center gap-4">
+                    <div class="w-10 h-10 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary" data-key="pi_email_label">Email</p>
+                        <p class="font-semibold text-sm md:text-base"><a href="mailto:eslam5eg@gmail.com" data-key="pi_email_value">eslam5eg@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="bg-bg-card p-4 rounded-lg border border-border-color flex items-center gap-4">
+                    <div class="w-10 h-10 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary" data-key="pi_location_label">Location</p>
+                        <p class="font-semibold text-sm md:text-base" data-key="pi_location_value">Cairo, Egypt</p>
+                    </div>
+                </div>
+                <div class="bg-bg-card p-4 rounded-lg border border-border-color flex items-center gap-4">
+                     <div class="w-10 h-10 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary" data-key="pi_dob_label">Date of Birth</p>
+                        <p class="font-semibold text-sm md:text-base" data-key="pi_dob_value">5 Feb 1992</p>
+                    </div>
+                </div>
+                <div class="bg-bg-card p-4 rounded-lg border border-border-color flex items-center gap-4">
+                     <div class="w-10 h-10 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-text-secondary" data-key="pi_military_label">Military Service</p>
+                        <p class="font-semibold text-sm md:text-base" data-key="pi_military_value">Exempted</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Training Section -->
+        <section id="education" data-aos="fade-up">
+            <h2 class="section-title text-2xl font-bold mb-6 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                <span data-key="educationTitle">Education & Training</span>
+            </h2>
+            <div class="bg-bg-card p-6 rounded-lg border border-border-color space-y-6">
+                <div class="flex items-start gap-4">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <div class="w-12 h-12 bg-bg-secondary rounded-md flex items-center justify-center flex-shrink-0"><img src="images/aljazeera.png" alt="Al-Jazeera Academy Logo" class="h-8 w-8 object-contain"></div>
+                    <div>
+                        <h3 class="font-bold" data-key="edu_bachelor_title">Bachelor of Management Information Systems</h3>
+                        <p class="text-sm text-accent-secondary" data-key="edu_bachelor_meta">Al-Jazeera Academy – Cairo (2012 – 2018)</p>
+                        <p class="text-sm text-text-secondary mt-2" data-key="edu_bachelor_desc">Studied the fundamentals of management, information systems, and databases, with a focus on using technology to support administrative decisions. Certified by the Egyptian Ministry of Higher Education.</p>
+                    </div>
+                </div>
+                <div class="border-t border-border-color pt-6">
+                    <h3 class="font-bold mb-4" data-key="training_courses_title">Training Courses</h3>
+                    <div class="space-y-4">
+                          <div>
+                              <h4 class="font-semibold" data-key="edu_icdl_title">ICDL – International Computer Driving Licence</h4>
+                              <p class="text-sm text-text-secondary mt-1" data-key="edu_icdl_desc">Enhanced efficiency in office and administrative work, enabling me to produce accurate reports and manage simple databases.</p>
+                          </div>
+                          <div>
+                              <h4 class="font-semibold" data-key="edu_hr_title">Human Resources Diploma</h4>
+                              <p class="text-sm text-text-secondary mt-1" data-key="edu_hr_desc">Gained a deeper understanding of the employee lifecycle, improving my ability to interact with teams and link HR management with document control.</p>
+                          </div>
+                          <div>
+                              <h4 class="font-semibold" data-key="edu_skills_title">Personal Skills Diploma</h4>
+                              <p class="text-sm text-text-secondary mt-1" data-key="edu_skills_desc">Improved communication with technical and administrative teams and enhanced decision-making abilities in project environments.</p>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" data-aos="fade-up">
+            <!-- This section content is unchanged -->
+            <div class="flex flex-wrap justify-between items-center mb-6 pb-3 section-title gap-4">
+                <h2 class="text-2xl font-bold flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span data-key="aboutTitle">About Me</span>
+                </h2>
+                <button id="improve-about-btn" class="text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors">
+                    <span data-key="improveAboutBtn">✨ Suggest Improvements</span>
+                </button>
+            </div>
+            <p class="text-text-secondary text-base md:text-lg leading-relaxed" data-key="aboutPara">As a document control expert with over 8 years in the construction and real estate sectors, I have guided the successful implementation of Document Management Systems (DMS) that reduced data errors by 15% and ensured the smooth delivery of 7 major projects. I oversee all aspects of project documentation in complex construction environments, with proficiency in platforms like Aconex and SharePoint, ensuring seamless information flow and strict standards compliance. I am a document control systems architect, transforming complex documentation challenges into streamlined, auditable processes that effectively reduce risk and ensure projects are delivered on schedule.</p>
+        </section>
+
+        <!-- What I Offer Section -->
+        <section id="offer" data-aos="fade-up">
+            <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                <span data-key="offerTitle">What I Offer</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color text-center cursor-pointer transform hover:scale-105 hover:border-accent-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="100" data-modal-key="offer1">
+                    <div class="w-12 h-12 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 pointer-events-none" data-key="offer1_title">Document System Foundation</h3>
+                    <p class="text-sm text-text-secondary pointer-events-none" data-key="offer1_desc">Establishing robust document control systems from the ground up, ensuring compliance and efficiency.</p>
+                </div>
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color text-center cursor-pointer transform hover:scale-105 hover:border-accent-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="200" data-modal-key="offer2">
+                     <div class="w-12 h-12 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 pointer-events-none" data-key="offer2_title">Process Optimization</h3>
+                    <p class="text-sm text-text-secondary pointer-events-none" data-key="offer2_desc">Analyzing and improving document workflows to reduce delays and enhance team productivity.</p>
+                </div>
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color text-center cursor-pointer transform hover:scale-105 hover:border-accent-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="300" data-modal-key="offer3">
+                     <div class="w-12 h-12 bg-accent-primary/10 text-accent-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20V16"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2 pointer-events-none" data-key="offer3_title">Data-Driven Reporting</h3>
+                    <p class="text-sm text-text-secondary pointer-events-none" data-key="offer3_desc">Creating insightful dashboards and reports that empower management with actionable data.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Approach Section -->
+        <section id="approach" data-aos="fade-up">
+            <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg>
+                <span data-key="approachTitle">My Methodology in Work</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color transform hover:scale-105 hover:border-accent-primary transition-all duration-300 cursor-pointer" data-aos="fade-up" data-aos-delay="100" data-modal-key="approach1">
+                    <h3 class="font-bold text-lg mb-2 pointer-events-none" data-key="approach_card1_title">Security</h3>
+                    <p class="text-sm text-text-secondary pointer-events-none" data-key="approach_card1_desc">Implementing role-based access to ensure data confidentiality and integrity.</p>
+                </div>
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color transform hover:scale-105 hover:border-accent-primary transition-all duration-300 cursor-pointer" data-aos="fade-up" data-aos-delay="200" data-modal-key="approach2">
+                    <h3 class="font-bold text-lg mb-2 pointer-events-none" data-key="approach_card2_title">Accessibility</h3>
+                    <p class="text-sm text-text-secondary pointer-events-none" data-key="approach_card2_desc">Ensuring stakeholders can retrieve accurate information swiftly and securely.</p>
+                </div>
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color transform hover:scale-105 hover:border-accent-primary transition-all duration-300 cursor-pointer" data-aos="fade-up" data-aos-delay="300" data-modal-key="approach3">
+                    <h3 class="font-bold text-lg mb-2 pointer-events-none" data-key="approach_card3_title">Compliance</h3>
+                    <p class="text-sm text-text-secondary pointer-events-none" data-key="approach_card3_desc">Adhering to ISO standards and project-specific requirements for full auditability.</p>
+                </div>
+            </div>
+            
+             <!-- Professional Document Workflow -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0">
+                <div class="workflow-step bg-bg-card p-4 rounded-lg border border-border-color shadow-md text-center cursor-pointer hover:border-accent-primary transition-colors" data-aos="fade-down" data-modal-key="wf1">
+                    <h4 class="font-bold pointer-events-none" data-key="wf1">Contractor Submittal</h4>
+                </div>
+                <div class="workflow-arrow text-2xl text-accent-primary transform md:-translate-y-4 rtl:rotate-180" data-aos="fade-down" data-aos-delay="100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 md:w-16 md:h-16 -rotate-90 md:rotate-0"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </div>
+                <div class="workflow-step bg-bg-card p-4 rounded-lg border border-border-color shadow-md text-center cursor-pointer hover:border-accent-primary transition-colors" data-aos="fade-down" data-aos-delay="200" data-modal-key="wf2">
+                    <h4 class="font-bold pointer-events-none" data-key="wf2">DC Initial Review</h4>
+                </div>
+                <div class="workflow-arrow text-2xl text-accent-primary transform md:translate-y-4 rtl:rotate-180" data-aos="fade-down" data-aos-delay="300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 md:w-16 md:h-16 -rotate-90 md:rotate-0"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </div>
+                <div class="workflow-step bg-bg-card p-4 rounded-lg border border-border-color shadow-md text-center cursor-pointer hover:border-accent-primary transition-colors" data-aos="fade-down" data-aos-delay="400" data-modal-key="wf4">
+                    <h4 class="font-bold pointer-events-none" data-key="wf4">Consultant Review</h4>
+                </div>
+                 <div class="workflow-arrow text-2xl text-accent-primary transform md:-translate-y-4 rtl:rotate-180" data-aos="fade-down" data-aos-delay="500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-12 h-12 md:w-16 md:h-16 -rotate-90 md:rotate-0"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </div>
+                <div class="workflow-step bg-green-500/10 p-4 rounded-lg border border-green-500/30 shadow-md text-center cursor-pointer hover:border-green-400 transition-colors" data-aos="fade-down" data-aos-delay="600" data-modal-key="wf6">
+                    <h4 class="font-bold text-green-400 pointer-events-none" data-key="wf6">Archiving & Closure</h4>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Professional Experience -->
+        <section id="experience" data-aos="fade-up">
+             <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+                 <span data-key="experienceTitle">Professional Experience</span>
+             </h2>
+             <div class="space-y-4">
+                 <article class="bg-bg-card p-4 rounded-lg border border-border-color flex flex-col md:flex-row items-start md:items-center gap-4" data-aos="fade-right">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <div class="w-14 h-14 bg-bg-secondary rounded-md flex items-center justify-center flex-shrink-0"><img src="images/modad.png" alt="Modad Contracting Logo" class="h-8 w-8 object-contain"></div>
+                    <div class="flex-grow"><h3 class="font-bold text-lg" data-key="exp1Title">Senior Document Controller</h3><p class="text-accent-secondary text-sm" data-key="exp1Company">Modad Contracting</p></div>
+                    <div class="text-text-secondary text-sm flex-shrink-0" data-key="exp1Date">2025 – Present</div>
+                    <button class="w-full md:w-auto px-4 py-2 text-sm font-semibold rounded-full bg-bg-secondary hover:bg-border-color transition-colors" data-experience="modad" data-key="viewDetailsBtn">View Details</button>
+                 </article>
+                 <article class="bg-bg-card p-4 rounded-lg border border-border-color flex flex-col md:flex-row items-start md:items-center gap-4" data-aos="fade-right">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <div class="w-14 h-14 bg-bg-secondary rounded-md flex items-center justify-center flex-shrink-0"><img src="images/mosharaq.png" alt="Mosharaq Logo" class="h-8 w-8 object-contain"></div>
+                    <div class="flex-grow"><h3 class="font-bold text-lg" data-key="exp2Title">Senior Document Controller</h3><p class="text-accent-secondary text-sm" data-key="exp2Company">Mosharaq Real Estate Development</p></div>
+                    <div class="text-text-secondary text-sm flex-shrink-0" data-key="exp2Date">2024 – 2025</div>
+                    <button class="w-full md:w-auto px-4 py-2 text-sm font-semibold rounded-full bg-bg-secondary hover:bg-border-color transition-colors" data-experience="mosharaq" data-key="viewDetailsBtn">View Details</button>
+                 </article>
+                 <article class="bg-bg-card p-4 rounded-lg border border-border-color flex flex-col md:flex-row items-start md:items-center gap-4" data-aos="fade-right">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <div class="w-14 h-14 bg-bg-secondary rounded-md flex items-center justify-center flex-shrink-0"><img src="images/marakez.png" alt="Marakez Logo" class="h-8 w-8 object-contain"></div>
+                    <div class="flex-grow"><h3 class="font-bold text-lg" data-key="exp3Title">Document Controller</h3><p class="text-accent-secondary text-sm" data-key="exp3Company">Marakez Real Estate Development</p></div>
+                    <div class="text-text-secondary text-sm flex-shrink-0" data-key="exp3Date">2020 – 2024</div>
+                    <button class="w-full md:w-auto px-4 py-2 text-sm font-semibold rounded-full bg-bg-secondary hover:bg-border-color transition-colors" data-experience="marakez" data-key="viewDetailsBtn">View Details</button>
+                 </article>
+                 <article class="bg-bg-card p-4 rounded-lg border border-border-color flex flex-col md:flex-row items-start md:items-center gap-4" data-aos="fade-right">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <div class="w-14 h-14 bg-bg-secondary rounded-md flex items-center justify-center flex-shrink-0"><img src="images/fas.png" alt="FAS Logo" class="h-8 w-8 object-contain"></div>
+                    <div class="flex-grow"><h3 class="font-bold text-lg" data-key="exp4Title">Document Controller - Quality Dept.</h3><p class="text-accent-secondary text-sm" data-key="exp4Company">FAS CONSTRUCTIONS</p></div>
+                    <div class="text-text-secondary text-sm flex-shrink-0" data-key="exp4Date">2018 – 2020</div>
+                    <button class="w-full md:w-auto px-4 py-2 text-sm font-semibold rounded-full bg-bg-secondary hover:bg-border-color transition-colors" data-experience="fas" data-key="viewDetailsBtn">View Details</button>
+                 </article>
+                 <article class="bg-bg-card p-4 rounded-lg border border-border-color flex flex-col md:flex-row items-start md:items-center gap-4" data-aos="fade-right">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <div class="w-14 h-14 bg-bg-secondary rounded-md flex items-center justify-center flex-shrink-0"><img src="images/rowad.png" alt="Rowad Logo" class="h-8 w-8 object-contain"></div>
+                    <div class="flex-grow"><h3 class="font-bold text-lg" data-key="exp5Title">Document Controller - Technical Office</h3><p class="text-accent-secondary text-sm" data-key="exp5Company">Rowad modern engineering</p></div>
+                    <div class="text-text-secondary text-sm flex-shrink-0" data-key="exp5Date">2017 – 2018</div>
+                    <button class="w-full md:w-auto px-4 py-2 text-sm font-semibold rounded-full bg-bg-secondary hover:bg-border-color transition-colors" data-experience="rowad" data-key="viewDetailsBtn">View Details</button>
+                 </article>
+             </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" data-aos="fade-up">
+            <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                <span data-key="portfolioTitle">Project Portfolio</span>
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-bg-card p-4 rounded-lg border border-border-color">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <img src="images/powerbi-dashboard.jpg" alt="Power BI Dashboard Example" class="rounded-md mb-4 w-full h-auto object-cover">
+                    <h3 class="font-bold text-lg" data-key="portfolio1_title">Power BI Reporting Dashboard</h3>
+                    <p class="text-sm text-text-secondary mt-1" data-key="portfolio1_desc">An interactive dashboard built to track document submission statuses, identify delays, and provide management with a high-level overview of project health. This tool was instrumental in improving decision-making speed.</p>
+                </div>
+                <div class="bg-bg-card p-4 rounded-lg border border-border-color">
+                    <!-- تم التعديل: استخدام المسار المحلي الصحيح -->
+                    <img src="images/aconex-workflow.jpg" alt="Aconex Workflow Example" class="rounded-md mb-4 w-full h-auto object-cover">
+                    <h3 class="font-bold text-lg" data-key="portfolio2_title">Aconex Workflow Automation</h3>
+                    <p class="text-sm text-text-secondary mt-1" data-key="portfolio2_desc">Designed and implemented a comprehensive document review and approval workflow within Aconex for a high-profile banking project. This standardized the process, created a clear audit trail, and significantly reduced review cycle times.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" data-aos="fade-up">
+             <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                 <span data-key="testimonialsTitle">Testimonials</span>
+             </h2>
+             <div class="space-y-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color">
+                    <blockquote class="text-text-secondary italic" data-key="testimonial1_text">"Eslam's ability to structure a document control system from scratch was instrumental to our project's success. His data-driven reports gave us unprecedented clarity."</blockquote>
+                    <cite class="block text-right mt-4 not-italic">
+                        <span class="font-bold text-text-primary" data-key="testimonial1_author">Eng. Osama Gamal</span>
+                        <span class="text-sm text-accent-secondary" data-key="testimonial1_company">, Technical Office Manager, Mashareq Real Estate Development</span>
+                    </cite>
+                </div>
+                 <!-- Testimonial 2 -->
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color">
+                    <blockquote class="text-text-secondary italic" data-key="testimonial2_text">"His meticulous approach to managing quality documentation and tracking non-conformance reports was invaluable. He is a true professional."</blockquote>
+                    <cite class="block text-right mt-4 not-italic">
+                        <span class="font-bold text-text-primary" data-key="testimonial2_author">Eng. Ahmed Esmat</span>
+                        <span class="text-sm text-accent-secondary" data-key="testimonial2_company">, Project Manager, Al Ashraf Constructive Consultant Office (Ivoire West Project)</span>
+                    </cite>
+                </div>
+             </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" data-aos="fade-up">
+            <!-- This section content is unchanged -->
+            <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <span data-key="techSkillsTitle">Technical Skills</span>
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-green-500/50 hover:-translate-y-1" data-modal-key="excel"><div class="w-16 h-16 bg-green-500/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-green-400"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>Microsoft Excel</title><path d="M23 1.5q.41 0 .7.3.3.29.3.7v19q0 .41-.3.7-.29.3-.7.3H7q-.41 0-.7-.3-.3-.29-.3-.7V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h5V2.5q0-.41.3-.7.29-.3.7-.3zM6 16.5V21h16V3H7v13.5zm-4-9v7h3v-7zm14.47 4.97L18.6 15H17.1l-1.4-2.1-.03.01-1.4 2.1H12.7l2.13-3.2L12.7 8.5h1.52l1.28 2.02.03-.01 1.27-2.01h1.53l-2.14 3.23z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_excel">Excel</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-blue-500/50 hover:-translate-y-1" data-modal-key="word"><div class="w-16 h-16 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-blue-400"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>Microsoft Word</title><path d="M23 1.5q.41 0 .7.3.3.29.3.7v19q0 .41-.3.7-.29.3-.7.3H7q-.41 0-.7-.3-.3-.29-.3-.7V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h5V2.5q0-.41.3-.7.29-.3.7-.3zM6 16.5V21h16V3H7v13.5zm-4-9v7h3v-7zm15.42 4.61v.36q0 .52-.22.79-.23.27-.72.27-.55 0-.85-.36-.3-.37-.3-.92V8.5h-1.55v3.42q0 .93.57 1.45.57.51 1.55.51.96 0 1.53-.51.57-.52.57-1.4V8.5h-1.5v3.61zM11.33 15h-1.3l-.9-3.32-.9 3.32h-1.3l-1.5-6.5h1.55l.78 3.32.9-3.32h1.3l.9 3.32.78-3.32h1.55z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_word">Word</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-cyan-500/50 hover:-translate-y-1" data-modal-key="outlook"><div class="w-16 h-16 bg-cyan-500/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-cyan-400"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>Microsoft Outlook</title><path d="M20.9 23.25a2.95 2.95 0 01-2.09-.88L3.2 6.75A2.96 2.96 0 012.33.88a2.95 2.95 0 014.16 0l15.63 15.62a2.95 2.95 0 010 4.16c-.57.58-1.32.89-2.1.89m-3.8-9.45a.91.91 0 00-.9-.9h-3.7c-.5 0-.9.4-.9.9v3.74c0 .5.4.9.9.9h3.7c.5 0 .9-.4.9-.9zM9.54 9.17a3.4 3.4 0 013.4-3.4h3.71a3.4 3.4 0 013.4 3.4v3.71a3.4 3.4 0 01-3.4 3.4h-3.71a3.4 3.4 0 01-3.4-3.4zM2.96 24a2.96 2.96 0 01-2.96-2.96V2.96A2.96 2.96 0 012.96 0h11.08a2.96 2.96 0 012.96 2.96v7.35l-2.43-2.43a.5.5 0 00-.85.34v8.28a.5.5 0 00.85.35l2.43-2.43v6.62A2.96 2.96 0 0114.04 24z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_outlook">Outlook</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-yellow-500/50 hover:-translate-y-1" data-modal-key="powerbi"><div class="w-16 h-16 bg-yellow-500/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-yellow-400"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>Power BI</title><path d="M1.498 13.5v7.004h5.253v-7.004H1.498zM1.5 3.498v7.004h5.253V3.498H1.5zM9.749 3.5v17.004h5.253V3.5H9.749zm8.253 7.004v10.002H23.25V10.502h-5.248z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_powerbi">Power BI</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-blue-400/50 hover:-translate-y-1" data-modal-key="python"><div class="w-16 h-16 bg-blue-400/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-blue-300"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>Python</title><path d="M23.13 8.318H16.88a1.95 1.95 0 00-1.95-1.95V0H8.318a1.95 1.95 0 00-1.95 1.95v6.368a1.95 1.95 0 01-1.95 1.95H.87a1.95 1.95 0 00-1.95 1.95v6.368a1.95 1.95 0 001.95 1.95h3.618a1.95 1.95 0 011.95 1.95V24h6.612a1.95 1.95 0 001.95-1.95v-6.368a1.95 1.95 0 011.95-1.95h6.252a1.95 1.95 0 001.95-1.95v-6.368A1.95 1.95 0 0023.13 8.318zm-8.25 11.562v2.17H9.29v-2.17a1.95 1.95 0 00-1.95-1.95H3.04a1.95 1.95 0 00-1.95 1.95v-4.42h2.17a1.95 1.95 0 001.95-1.95V9.29h2.17a1.95 1.95 0 001.95 1.95h4.42a1.95 1.95 0 001.95-1.95v-2.17h2.17a1.95 1.95 0 001.95 1.95h4.42a1.95 1.95 0 00-1.95-1.95h-2.17a1.95 1.95 0 00-1.95 1.95v7.32a1.95 1.95 0 001.95 1.95zm-3.9-6.825a1.463 1.463 0 111.463-1.463 1.463 1.463 0 01-1.463 1.463zm-5.85 0a1.463 1.463 0 111.463-1.463 1.463 1.463 0 01-1.463 1.463z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_python">Python</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-teal-500/50 hover:-translate-y-1" data-modal-key="sharepoint"><div class="w-16 h-16 bg-teal-500/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-teal-400"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>Microsoft SharePoint</title><path d="M12.353 2.647a.5.5 0 00-.707 0L8.293 6H3.5a.5.5 0 00-.5.5v4.793l-2.146 2.146a.5.5 0 000 .708L3.001 16.293V21.5a.5.5 0 00.5.5H8.29l3.354 3.354a.5.5 0 00.707 0L15.707 22H20.5a.5.5 0 00.5-.5v-4.793l2.146-2.146a.5.5 0 000-.708L20.999 7.707V3.5a.5.5 0 00-.5-.5H15.71zm-1.06 1.06l3.353 3.354h-3.353zm1.06 1.06v3.354l-3.353 3.353v-3.353zM6.646 7l3.354 3.354v3.353l-3.354-3.353zm3.354 10.354l-3.354-3.354h3.354zm3.353-6.06l3.354 3.353H13.353zm-3.353 6.06l3.353-3.354v-3.353L6.646 17z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_sharepoint">SharePoint</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-orange-500/50 hover:-translate-y-1" data-modal-key="aconex"><div class="w-16 h-16 bg-orange-500/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-orange-400"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_aconex">Aconex</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-red-500/50 hover:-translate-y-1" data-modal-key="autocad"><div class="w-16 h-16 bg-red-500/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-red-400"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>AutoCAD</title><path d="M12.984 1.286c-1.332 0-2.668.21-3.924.6L7.2 1.32l-1.608.9-1.02 1.752-1.284 4.02L1.2 12.012l2.088 4.02 1.284 4.02 1.02 1.752 1.608.9.864-.564c1.256.39 2.592.6 3.924.6 4.728 0 8.88-2.688 10.92-6.624L24 12l-.096-.384C21.865 3.974 17.712 1.286 12.984 1.286zm.132 2.112c3.78 0 7.2 2.1 8.928 5.232l.012.024v.108l-.012.024c-1.728 3.132-5.148 5.232-8.928 5.232-3.78 0-7.2-2.1-8.928-5.232L4.176 12v-.108l.012-.024c1.728-3.132 5.148 5.232 8.928 5.232zm-2.112 1.5v1.284H9.72v.972h1.284v3.42h.972v-3.42h1.284v-.972h-1.284V4.9zM15.42 6.4v5.22h.9v1.008h-3.444V11.62h.9V6.4z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_autocad">AutoCAD</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+                <div class="skill-card group relative bg-bg-card p-4 rounded-lg border border-border-color text-center cursor-pointer transition-all duration-300 hover:border-red-600/50 hover:-translate-y-1" data-modal-key="acrobat"><div class="w-16 h-16 bg-red-600/10 rounded-lg flex items-center justify-center mx-auto mb-3 text-red-500"><svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor"><title>Adobe Acrobat Reader</title><path d="M13.294 2.871l-9.14 20.372h4.59l1.83-4.254h5.362l1.921 4.254h4.54L13.294 2.871zm-1.464 4.41l3.12 6.963h-6.17l3.05-6.963zM3.456 0h17.088C22.428 0 24 1.464 24 3.276v17.448c0 1.812-1.572 3.276-3.456 3.276H3.456C1.572 24 0 22.536 0 20.724V3.276C0 1.464 1.572 0 3.456 0z"/></svg></div><span class="font-semibold pointer-events-none" data-key="skill_acrobat">Acrobat Pro</span><div class="absolute bottom-2 right-2 text-xs text-text-secondary opacity-0 group-hover:opacity-100 transition-opacity" data-key="clickable_indicator">Click</div></div>
+            </div>
+
+            <h2 class="section-title text-2xl font-bold mt-16 mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <span data-key="personalSkillsTitle">Personal Skills</span>
+            </h2>
+            <div class="flex flex-wrap gap-3">
+                 <span class="flex items-center gap-2 bg-bg-card px-4 py-2 rounded-full border border-border-color text-sm cursor-pointer hover:border-accent-primary transition-colors" data-modal-key="docmanagement"><span class="pointer-events-none" data-key="ps7">Document Management</span></span>
+                 <span class="flex items-center gap-2 bg-bg-card px-4 py-2 rounded-full border border-border-color text-sm cursor-pointer hover:border-accent-primary transition-colors" data-modal-key="leadership"><span class="pointer-events-none" data-key="ps1">Leadership & Team Management</span></span>
+                 <span class="flex items-center gap-2 bg-bg-card px-4 py-2 rounded-full border border-border-color text-sm cursor-pointer hover:border-accent-primary transition-colors" data-modal-key="communication"><span class="pointer-events-none" data-key="ps2">Communication & Coordination</span></span>
+                 <span class="flex items-center gap-2 bg-bg-card px-4 py-2 rounded-full border border-border-color text-sm cursor-pointer hover:border-accent-primary transition-colors" data-modal-key="decision"><span class="pointer-events-none" data-key="ps3">Decision Making</span></span>
+                 <span class="flex items-center gap-2 bg-bg-card px-4 py-2 rounded-full border border-border-color text-sm cursor-pointer hover:border-accent-primary transition-colors" data-modal-key="problemsolving"><span class="pointer-events-none" data-key="ps4">Problem Solving</span></span>
+                 <span class="flex items-center gap-2 bg-bg-card px-4 py-2 rounded-full border border-border-color text-sm cursor-pointer hover:border-accent-primary transition-colors" data-modal-key="reporting"><span class="pointer-events-none" data-key="ps5">Reporting & Presentation</span></span>
+                 <span class="flex items-center gap-2 bg-bg-card px-4 py-2 rounded-full border border-border-color text-sm cursor-pointer hover:border-accent-primary transition-colors" data-modal-key="compliance"><span class="pointer-events-none" data-key="ps6">Compliance & Procedures</span></span>
+            </div>
+        </section>
+
+        <!-- Achievements & KPIs -->
+        <section id="kpis" data-aos="fade-up">
+             <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"></path><path d="M18 20V4"></path><path d="M6 20V16"></path></svg>
+                 <span data-key="kpiTitle">Achievements & KPIs</span>
+             </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="kpi-item">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <p data-key="kpi1">Years of Experience</p>
+                        <div class="text-2xl font-bold text-accent-primary"><span class="kpi-number" data-target="8">0</span>+</div>
+                    </div>
+                    <div class="w-full h-2 rounded-full kpi-progress-bg"><div class="h-full rounded-full kpi-progress-bar" style="width: 0%" data-width="80%"></div></div>
+                </div>
+                 <div class="kpi-item">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <p data-key="kpi2">Major Projects Delivered</p>
+                        <div class="text-2xl font-bold text-accent-primary"><span class="kpi-number" data-target="7">0</span></div>
+                    </div>
+                    <div class="w-full h-2 rounded-full kpi-progress-bg"><div class="h-full rounded-full kpi-progress-bar" style="width: 0%" data-width="70%"></div></div>
+                </div>
+                <div class="kpi-item">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <p data-key="kpi5">Reduction in Data Errors</p>
+                        <div class="text-2xl font-bold text-accent-primary"><span class="kpi-number" data-target="15">0</span>%</div>
+                    </div>
+                    <div class="w-full h-2 rounded-full kpi-progress-bg"><div class="h-full rounded-full kpi-progress-bar" style="width: 0%" data-width="90%"></div></div>
+                </div>
+                 <div class="kpi-item">
+                    <div class="flex justify-between items-baseline mb-1">
+                        <p data-key="kpi4">Document Retrieval SLA</p>
+                        <div class="text-2xl font-bold text-accent-primary"><span class="kpi-number" data-target="95">0</span>%</div>
+                    </div>
+                    <div class="w-full h-2 rounded-full kpi-progress-bg"><div class="h-full rounded-full kpi-progress-bar" style="width: 0%" data-width="95%"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Knowledge Center Section -->
+        <section id="knowledge" data-aos="fade-up">
+            <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <span data-key="knowledgeTitle">Knowledge Center</span>
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Article cards will be generated here by JS -->
+            </div>
+        </section>
+
+        <!-- Continuous Development Section -->
+        <section id="development" data-aos="fade-up">
+            <!-- This section content is unchanged -->
+            <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"></path><path d="m18 9-6 6-6-6"></path></svg>
+                <span data-key="developmentTitle">Continuous Self-Development</span>
+            </h2>
+             <div class="bg-bg-card p-6 rounded-lg border border-border-color">
+                <p class="text-text-secondary mb-4" data-key="developmentDesc">I am committed to lifelong learning and continuously enhancing my skills. Currently, I am focused on:</p>
+                <ul class="list-disc list-inside space-y-2 text-text-primary">
+                    <li data-key="dev1">Advancing my professional proficiency in the <strong>English language</strong>.</li>
+                    <li data-key="dev2">Deepening my expertise in <strong>Python & VBA</strong> for advanced automation and data analysis.</li>
+                    <li data-key="dev3">Expanding my capabilities in <strong>Power BI</strong> for more complex and dynamic data visualization.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- NEW Contact Section -->
+        <section id="contact" data-aos="fade-up">
+             <h2 class="section-title text-2xl font-bold mb-8 pb-3 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                 <span data-key="contactTitle">Get In Touch</span>
+             </h2>
+             <div class="bg-bg-card p-6 rounded-lg border border-border-color">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST"> <!-- Replace YOUR_FORM_ID with your Formspree ID -->
+                     <div class="grid md:grid-cols-2 gap-6">
+                         <div>
+                            <label for="name" class="block text-sm font-medium text-text-secondary mb-1" data-key="formName">Name</label>
+                            <input type="text" name="name" id="name" required class="w-full bg-bg-secondary border border-border-color rounded-md px-3 py-2 focus:ring-accent-primary focus:border-accent-primary transition">
+                         </div>
+                         <div>
+                            <label for="email" class="block text-sm font-medium text-text-secondary mb-1" data-key="formEmail">Email</label>
+                            <input type="email" name="email" id="email" required class="w-full bg-bg-secondary border border-border-color rounded-md px-3 py-2 focus:ring-accent-primary focus:border-accent-primary transition">
+                         </div>
+                     </div>
+                     <div class="mt-6">
+                        <label for="message" class="block text-sm font-medium text-text-secondary mb-1" data-key="formMessage">Message</label>
+                        <textarea name="message" id="message" rows="4" required class="w-full bg-bg-secondary border border-border-color rounded-md px-3 py-2 focus:ring-accent-primary focus:border-accent-primary transition"></textarea>
+                     </div>
+                     <div class="mt-6 text-center md:text-right">
+                         <button type="submit" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-accent-primary text-white font-semibold hover:opacity-90 transition-opacity" data-key="formSubmit">Send Message</button>
+                     </div>
+                </form>
+             </div>
+        </section>
+
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="text-center mt-16 md:mt-24 pt-8 border-t border-border-color">
+      <p class="text-sm text-text-secondary" data-key="footerText">© 2025 – Eslam Reda. All Rights Reserved.</p>
+    </footer>
+
+  </div>
+
+  <!-- MODALS -->
+  <div id="experienceModal" class="fixed inset-0 bg-bg-primary/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+      <div id="experienceModalContent" class="bg-bg-card w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg border border-border-color shadow-2xl p-6 transition-transform duration-300 scale-95">
+          <div class="flex justify-between items-center pb-3 border-b border-border-color"><h3 id="experienceModalTitle" class="text-lg font-bold">Experience Details</h3><button id="experienceModalClose" class="text-text-secondary hover:text-text-primary text-2xl leading-none">&times;</button></div>
+          <div id="experienceModalBody" class="prose dark:prose-invert max-w-none mt-4 text-text-secondary"></div>
+      </div>
+  </div>
+  
+  <div id="detailsModal" class="fixed inset-0 bg-bg-primary/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+      <div id="detailsModalContent" class="bg-bg-card w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg border border-border-color shadow-2xl p-6 transition-transform duration-300 scale-95">
+          <div class="flex justify-between items-center pb-3 border-b border-border-color"><h3 id="detailsModalTitle" class="text-lg font-bold">Details</h3><button id="detailsModalClose" class="text-text-secondary hover:text-text-primary text-2xl leading-none">&times;</button></div>
+          <div id="detailsModalBody" class="prose dark:prose-invert max-w-none mt-4 text-text-secondary"></div>
+      </div>
+  </div>
+
+  <div id="knowledgeModal" class="fixed inset-0 bg-bg-primary/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+    <div id="knowledgeModalContent" class="bg-bg-card w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-lg border border-border-color shadow-2xl p-6 transition-transform duration-300 scale-95">
+        <div class="flex justify-between items-center pb-3 border-b border-border-color"><h3 id="knowledgeModalTitle" class="text-xl font-bold">Article</h3><button id="knowledgeModalClose" class="text-text-secondary hover:text-text-primary text-2xl leading-none">&times;</button></div>
+        <div id="knowledgeModalBody" class="prose dark:prose-invert max-w-none mt-4 text-text-secondary"></div>
+    </div>
+  </div>
+
+  <div id="geminiModal" class="fixed inset-0 bg-bg-primary/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity duration-300 opacity-0 pointer-events-none">
+    <div id="geminiModalContent" class="bg-bg-card w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-lg border border-border-color shadow-2xl p-6 transition-transform duration-300 scale-95">
+        <div class="flex justify-between items-center pb-3 border-b border-border-color"><h3 id="geminiModalTitle" class="text-lg font-bold">✨ AI Suggestions</h3><button id="geminiModalClose" class="text-text-secondary hover:text-text-primary text-2xl leading-none">&times;</button></div>
+        <div id="geminiModalBody" class="prose dark:prose-invert max-w-none mt-4 text-text-secondary min-h-[150px]"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg opacity-0 transform translate-y-2 z-50">
+      <span id="toast-message"></span>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AOS.init({ duration: 800, once: true, offset: 50 });
+
+      const translations = {
+        // --- General ---
+        name: { en: 'Eslam Reda', ar: 'إسلام رضا' },
+        jobTitle: { en: 'Senior Document Controller', ar: 'مراقب أول وثائق' },
+        tagline: { en: '“Building efficient document control systems and supporting project success through data-driven decision making.”', ar: '"بناء أنظمة فعالة للتحكم في المستندات ودعم نجاح المشاريع من خلال اتخاذ القرارات المبنية على البيانات."' },
+        downloadCV_EN: { en: 'Download CV (EN)', ar: 'تحميل السيرة الذاتية (EN)' },
+        downloadCV_AR: { en: 'Download CV (AR)', ar: 'تحميل السيرة الذاتية (عربي)' },
+        viewDetailsBtn: { en: 'View Details', ar: 'عرض التفاصيل' },
+        linkCopied: { en: 'Link copied to clipboard!', ar: 'تم نسخ الرابط!' },
+        
+        // --- Navigation ---
+        nav_about: { en: 'About', ar: 'عني' },
+        nav_experience: { en: 'Experience', ar: 'الخبرة' },
+        nav_portfolio: { en: 'Portfolio', ar: 'المشاريع' },
+        nav_knowledge: { en: 'Knowledge Center', ar: 'مركز المعرفة' },
+        nav_skills: { en: 'Skills', ar: 'المهارات' },
+        nav_contact: { en: 'Contact', ar: 'تواصل' },
+
+        // --- AI Buttons & Modals ---
+        improveAboutBtn: { en: '✨ Suggest Improvements', ar: '✨ اقتراح تحسينات' },
+        generateQuestionsBtn: { en: '✨ Generate Interview Questions', ar: '✨ توليد أسئلة مقابلة' },
+        geminiModalTitle: { en: '✨ AI Suggestions', ar: '✨ اقتراحات الذكاء الاصطناعي' },
+        geminiLoading: { en: 'Generating...', ar: 'جاري التوليد...' },
+        
+        // --- Sections (Unchanged from original) ---
+        personalInfoTitle: { en: 'Personal Information', ar: 'المعلومات الشخصية' },
+        pi_phone_label: { en: 'Phone', ar: 'الهاتف' }, pi_phone_value: { en: '+20 111 168 7891', ar: '7891 168 111 20+' },
+        pi_email_label: { en: 'Email', ar: 'البريد الإلكتروني' }, pi_email_value: { en: 'eslam5eg@gmail.com', ar: 'eslam5eg@gmail.com' },
+        pi_dob_label: { en: 'Date of Birth', ar: 'تاريخ الميلاد' }, pi_dob_value: { en: '5 Feb 1992', ar: '5 فبراير 1992' },
+        pi_location_label: { en: 'Location', ar: 'الموقع' }, pi_location_value: { en: 'Cairo, Egypt', ar: 'القاهرة، مصر' },
+        pi_military_label: { en: 'Military Service', ar: 'الخدمة العسكرية' },
+        pi_military_value: { en: 'Exempted', ar: 'إعفاء نهائي' },
+        educationTitle: { en: 'Education & Training', ar: 'التعليم والتدريب' },
+        edu_bachelor_title: { en: 'Bachelor of Management Information Systems', ar: 'بكالوريوس نظم معلومات إدارية' },
+        edu_bachelor_meta: { en: 'Al-Jazeera Academy – Cairo (2012 – 2018)', ar: 'أكاديمية الجزيرة – القاهرة (2012 – 2018)' },
+        edu_bachelor_desc: { en: 'Studied the fundamentals of management, information systems, and databases, with a focus on using technology to support administrative decisions. Certified by the Egyptian Ministry of Higher Education.', ar: 'درست أساسيات الإدارة ونظم المعلومات وقواعد البيانات، مع تركيز على استخدام التكنولوجيا لدعم القرارات الإدارية. الشهادة معتمدة من وزارة التعليم العالي المصرية.' },
+        training_courses_title: { en: 'Training Courses', ar: 'الدورات التدريبية' },
+        edu_icdl_title: { en: 'ICDL – International Computer Driving Licence', ar: 'ICDL – الرخصة الدولية لقيادة الحاسب الآلي' },
+        edu_icdl_desc: { en: 'Enhanced efficiency in office and administrative work, enabling me to produce accurate reports and manage simple databases.', ar: 'رفع كفاءتي في العمل المكتبي والإداري وإعداد تقارير دقيقة.' },
+        edu_hr_title: { en: 'Human Resources Diploma', ar: 'دبلومة الموارد البشرية' },
+        edu_hr_desc: { en: 'Gained a deeper understanding of the employee lifecycle, improving my ability to interact with teams and link HR management with document control.', ar: 'فهم أعمق لدورة حياة الموظف وتطوير مهارات التعامل مع فرق العمل.' },
+        edu_skills_title: { en: 'Personal Skills Diploma', ar: 'دبلومة المهارات الشخصية' },
+        edu_skills_desc: { en: 'Improved communication with technical and administrative teams and enhanced decision-making abilities in project environments.', ar: 'تحسين مهارات التواصل وتعزيز القدرة على اتخاذ القرار.' },
+        aboutTitle: { en: 'About Me', ar: 'نبذة عني' },
+        aboutPara: { en: `As a document control expert with over 8 years in the construction and real estate sectors, I have guided the successful implementation of Document Management Systems (DMS) that reduced data errors by 15% and ensured the smooth delivery of 7 major projects. I oversee all aspects of project documentation in complex construction environments, with proficiency in platforms like Aconex and SharePoint, ensuring seamless information flow and strict standards compliance. I am a document control systems architect, transforming complex documentation challenges into streamlined, auditable processes that effectively reduce risk and ensure projects are delivered on schedule.`, ar: `بصفتي خبيرًا في مراقبة المستندات لأكثر من 8 سنوات في قطاعي الإنشاءات والعقارات، قمت بتوجيه التنفيذ الناجح لأنظمة إدارة المستندات (DMS) التي قللت من أخطاء البيانات بنسبة 15% وضمنت تسليم 7 مشاريع كبرى بسلاسة. أقوم بالإشراف على جميع جوانب وثائق المشاريع في بيئات الإنشاءات المعقدة، مع إتقان منصات مثل Aconex و SharePoint، مما يضمن التدفق السلس للمعلومات والامتثال الصارم للمعايير. أنا مصمم أنظمة تحكم في المستندات، أحول تحديات التوثيق المعقدة إلى عمليات مبسطة وقابلة للتدقيق تقلل المخاطر بشكل فعال وتضمن تسليم المشاريع في المواعيد المحددة.` },
+        
+        // --- NEWLY RESTORED SECTIONS ---
+        offerTitle: { en: 'What I Offer', ar: 'ماذا أقدم؟' },
+        offer1_title: { en: 'Document System Foundation', ar: 'تأسيس أنظمة التحكم بالمستندات' },
+        offer1_desc: { en: 'Establishing robust document control systems from the ground up, ensuring compliance and efficiency.', ar: 'تأسيس أنظمة قوية للتحكم بالمستندات من الصفر، مما يضمن الامتثال والكفاءة.' },
+        offer2_title: { en: 'Process Optimization', ar: 'تحسين العمليات' },
+        offer2_desc: { en: 'Analyzing and improving document workflows to reduce delays and enhance team productivity.', ar: 'تحليل وتحسين دورة عمل المستندات لتقليل التأخير وتعزيز إنتاجية الفريق.' },
+        offer3_title: { en: 'Data-Driven Reporting', ar: 'التقارير المبنية على البيانات' },
+        offer3_desc: { en: 'Creating insightful dashboards and reports that empower management with actionable data.', ar: 'إنشاء تقارير ولوحات بيانات تفاعلية تمكّن الإدارة من اتخاذ قرارات مبنية على بيانات دقيقة.' },
+        approachTitle: { en: 'My Methodology in Work', ar: 'منهجيتي في العمل' },
+        approach_card1_title: { en: 'Security', ar: 'الأمان' },
+        approach_card1_desc: { en: 'Implementing role-based access to ensure data confidentiality and integrity.', ar: 'تطبيق صلاحيات وصول محددة لضمان سرية وسلامة البيانات.' },
+        approach_card2_title: { en: 'Accessibility', ar: 'الوصول' },
+        approach_card2_desc: { en: 'Ensuring stakeholders can retrieve accurate information swiftly and securely.', ar: 'ضمان قدرة المعنيين على الوصول للمعلومات الدقيقة بسرعة وأمان.' },
+        approach_card3_title: { en: 'Compliance', ar: 'الامتثال' },
+        approach_card3_desc: { en: 'Adhering to ISO standards and project-specific requirements for full auditability.', ar: 'الالتزام بمعايير ISO ومتطلبات المشروع لتحقيق قابلية كاملة للتدقيق.' },
+        wf1: { en: 'Contractor Submittal', ar: 'تقديم المقاول' }, wf2: { en: 'DC Initial Review', ar: 'المراجعة الأولية' }, wf4: { en: 'Consultant Review', ar: 'مراجعة الاستشاري' }, wf6: { en: 'Archiving & Closure', ar: 'الأرشفة والإغلاق' },
+
+        experienceTitle: { en: 'Professional Experience', ar: 'الخبرات العملية' },
+        exp1Title: { en: 'Senior Document Controller', ar: 'مراقب أول وثائق' },
+        exp1Company: { en: 'Modad Contracting', ar: 'شركة موداد للمقاولات' },
+        exp1Date: { en: '2025 – Present', ar: '2025 – حتى الآن' },
+        exp2Title: { en: 'Senior Document Controller', ar: 'مراقب أول وثائق' },
+        exp2Company: { en: 'Mosharaq Real Estate Development', ar: 'شركة مشارق للتطوير العقاري' },
+        exp2Date: { en: '2024 – 2025', ar: '2024 – 2025' },
+        exp3Title: { en: 'Document Controller', ar: 'منسق مستندات' },
+        exp3Company: { en: 'Marakez Real Estate Development', ar: 'شركة مراكز للتطوير العقاري' },
+        exp3Date: { en: '2020 – 2024', ar: '2020 – 2024' },
+        exp4Title: { en: 'Document Controller - Quality Dept.', ar: 'منسق مستندات - قسم الجودة' },
+        exp4Company: { en: 'FAS CONSTRUCTIONS', ar: 'شركة فاس للإنشاءات' },
+        exp4Date: { en: '2018 – 2020', ar: '2018 – 2020' },
+        exp5Title: { en: 'Document Controller - Technical Office', ar: 'منسق وثائق - المكتب الفني' },
+        exp5Company: { en: 'Rowad modern engineering', ar: 'شركة الرواد للهندسة الحديثة' },
+        exp5Date: { en: '2017 – 2018', ar: '2017 – 2018' },
+        
+        // --- NEW Portfolio Section ---
+        portfolioTitle: { en: 'Project Portfolio', ar: 'نماذج المشاريع' },
+        portfolio1_title: { en: 'Power BI Reporting Dashboard', ar: 'لوحة بيانات تقارير Power BI' },
+        portfolio1_desc: { en: 'Developed a dynamic dashboard to track submittal statuses and consultant response times for a high-profile banking project.', ar: 'تطوير لوحة بيانات ديناميكية لتتبع حالة التقديمات وأوقات استجابة الاستشاري لمشروع بنكي رفيع المستوى.' },
+        portfolio2_title: { en: 'Aconex Workflow Automation', ar: 'أتمتة سير العمل على Aconex' },
+        portfolio2_desc: { en: 'Designed and implemented a comprehensive document review workflow on Aconex, standardizing the process for over 15 contractors.', ar: 'تصميم وتنفيذ سير عمل شامل لمراجعة المستندات على Aconex، مما وحد العملية لأكثر من 15 مقاولًا.' },
+        
+        // --- NEW Testimonials Section ---
+        testimonialsTitle: { en: 'Testimonials', ar: 'التوصيات' },
+        testimonial1_text: { en: `"Eslam's ability to structure a document control system from scratch was instrumental to our project's success. His data-driven reports gave us unprecedented clarity."`, ar: `"كانت قدرة إسلام على هيكلة نظام للتحكم في المستندات من الصفر أساسية لنجاح مشروعنا. تقاريره المستندة إلى البيانات منحتنا وضوحًا لم يسبق له مثيل."` },
+        testimonial1_author: { en: 'Eng. Osama Gamal', ar: 'م. أسامة جمال' },
+        testimonial1_company: { en: ', Technical Office Manager, Mashareq Real Estate Development', ar: '، مدير المكتب الفني، شركة مشارق للتطوير العقاري' },
+        testimonial2_text: { en: `"His meticulous approach to managing quality documentation and tracking non-conformance reports was invaluable. He is a true professional."`, ar: `"كان نهجه الدقيق في إدارة وثائق الجودة وتتبع تقارير عدم المطابقة لا يقدر بثمن. إنه محترف حقيقي."` },
+        testimonial2_author: { en: 'Eng. Ahmed Esmat', ar: 'م. أحمد عصمت' },
+        testimonial2_company: { en: ', Project Manager, Al Ashraf Constructive Consultant Office (Ivoire West Project)', ar: '، مدير مشروع، مكتب الأشراف للاستشارات الإنشائية (مشروع إيفوار ويست)' },
+
+        // --- Skills (Unchanged from original) ---
+        techSkillsTitle: { en: 'Technical Skills', ar: 'المهارات التقنية' },
+        skill_excel: { en: 'Excel', ar: 'إكسل' },
+        skill_word: { en: 'Word', ar: 'وورد' },
+        skill_outlook: { en: 'Outlook', ar: 'أوتلوك' },
+        skill_powerbi: { en: 'Power BI', ar: 'باور بي آي' },
+        skill_python: { en: 'Python', ar: 'بايثون' },
+        skill_sharepoint: { en: 'SharePoint', ar: 'شير بوينت' },
+        skill_aconex: { en: 'Aconex', ar: 'أكونيكس' },
+        skill_autocad: { en: 'AutoCAD', ar: 'أوتوكاد' },
+        skill_acrobat: { en: 'Acrobat Pro', ar: 'أكروبات برو' },
+        clickable_indicator: {en: 'Click', ar: 'انقر'},
+        personalSkillsTitle: { en: 'Personal Skills', ar: 'المهارات الشخصية' },
+        ps1: { en: 'Leadership & Team Management', ar: 'القيادة وإدارة الفريق' }, 
+        ps2: { en: 'Communication & Coordination', ar: 'التواصل والتنسيق' }, 
+        ps3: { en: 'Decision Making', ar: 'اتخاذ القرار' }, 
+        ps4: { en: 'Problem Solving', ar: 'حل المشكلات' }, 
+        ps5: { en: 'Reporting & Presentation', ar: 'التقارير والعروض التقديمية' }, 
+        ps6: { en: 'Compliance & Procedures', ar: 'الامتثال والإجراءات' },
+        ps7: { en: 'Document Management', ar: 'إدارة المستندات' },
+
+        // --- UPDATED KPIs Section ---
+        kpiTitle: { en: 'Achievements & KPIs', ar: 'الإنجازات والمؤشرات' },
+        kpi1: { en: 'Years of Experience', ar: 'سنوات خبرة' }, 
+        kpi2: { en: 'Major Projects Delivered', ar: 'مشاريع كبرى منجزة' }, 
+        kpi5: { en: 'Reduction in Data Errors', ar: 'تقليل أخطاء البيانات' }, 
+        kpi4: { en: 'Document Retrieval SLA', ar: 'نجاح استرجاع المستندات' },
+        
+        // --- NEW Knowledge Center Section ---
+        knowledgeTitle: { en: 'Knowledge Center', ar: 'مركز المعرفة' },
+        readArticleBtn: { en: 'Read More', ar: 'اقرأ المزيد' },
+
+        // --- Development (Unchanged from original) ---
+        developmentTitle: { en: 'Continuous Self-Development', ar: 'التطوير الذاتي المستمر' },
+        developmentDesc: { en: 'I am committed to lifelong learning and continuously enhancing my skills. Currently, I am focused on:', ar: 'أنا ملتزم بالتعلم مدى الحياة وتعزيز مهاراتي باستمرار. أركز حاليًا على:' },
+        dev1: { en: 'Advancing my professional proficiency in the <strong>English language</strong>.', ar: 'تطوير كفاءتي المهنية في <strong>اللغة الإنجليزية</strong>.' },
+        dev2: { en: 'Deepening my expertise in <strong>Python & VBA</strong> for advanced automation and data analysis.', ar: 'تعميق خبرتي في <strong>Python و VBA</strong> للأتمتة المتقدمة وتحليل البيانات.' },
+        dev3: { en: 'Expanding my capabilities in <strong>Power BI</strong> for more complex and dynamic data visualization.', ar: 'توسيع قدراتي في <strong>Power BI</strong> لتصور البيانات بشكل أكثر تعقيدًا وديناميكية.' },
+        
+        // --- NEW Contact Section ---
+        contactTitle: { en: 'Get In Touch', ar: 'تواصل معي' },
+        formName: { en: 'Name', ar: 'الاسم' },
+        formEmail: { en: 'Email', ar: 'البريد الإلكتروني' },
+        formMessage: { en: 'Message', ar: 'الرسالة' },
+        formSubmit: { en: 'Send Message', ar: 'إرسال الرسالة' },
+
+        // --- Footer (Unchanged from original) ---
+        footerText: { en: '© 2025 – Eslam Reda. All Rights Reserved.', ar: '© 2025 – إسلام رضا. جميع الحقوق محفوظة.' },
+
+        // --- MODAL DATA (Unchanged from original) ---
+        experienceDetails: {
+            modad: {
+                title: { en: 'Senior Document Controller at Modad Contracting', ar: 'مراقب أول وثائق في شركة موداد للمقاولات' },
+                content: {
+                    en: `<h4>Projects:</h4><p>Field management of 4 key banking projects: NBE Wesal, Banque Misr Wesal, NBE Admin Building, and Banque Misr Club.</p><h4>Technical Role:</h4><ul><li>Collaborated with the technical office to review, code, and submit technical documents (MEP & Architectural) for consultant approval.</li><li>Managed the complete lifecycle of documents, including both electronic (Aconex) and physical archiving after consultant review.</li></ul><h4>Administrative & Data Analysis Role:</h4><ul><li>Engineered a data pipeline by extracting information from Aconex into Excel for processing.</li><li>Utilized advanced Excel skills (Pivot Tables, complex formulas) to structure and analyze data, creating reports on document status, progress, and delays.</li><li>Transformed the analyzed data into professional, interactive dashboards using Power BI to support senior management's decision-making process.</li><li>Also managed documentation for procurement processes, including purchase requests and supply orders during my time at the head office.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="modad"><span data-key="generateQuestionsBtn">✨ Generate Interview Questions</span></button></div>`,
+                    ar: `<h4>المشاريع:</h4><p>إدارة ميدانية لـ 4 مشاريع بنكية رئيسية: البنك الأهلي وصال، بنك مصر وصال، المبنى الإداري للبنك الأهلي، ونادي بنك مصر.</p><h4>الدور الفني:</h4><ul><li>التعاون مع المكتب الفني لمراجعة وتكويد وتقديم المستندات الفنية (معماري، كهروميكانيك) للاستشاري لاعتمادها.</li><li>إدارة دورة حياة المستندات بالكامل، بما في ذلك الأرشفة الإلكترونية على (Aconex) والورقية بعد مراجعة الاستشاري.</li></ul><h4>الدور الإداري وتحليل البيانات:</h4><ul><li>هندسة مسار للبيانات عبر استخلاص المعلومات من Aconex إلى Excel لمعالجتها.</li><li>استخدام مهارات Excel المتقدمة (الجداول المحورية، المعادلات المعقدة) لهيكلة وتحليل البيانات، وإنشاء تقارير عن حالة المستندات وتقدمها والتأخيرات.</li><li>تحويل البيانات المحللة إلى لوحات بيانات تفاعلية واحترافية باستخدام Power BI لدعم عملية اتخاذ القرار للإدارة العليا.</li><li>إدارة مستندات عمليات المشتريات، بما في ذلك طلبات الشراء وأوامر التوريد خلال فترة عملي بالمقر الرئيسي.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="modad"><span data-key="generateQuestionsBtn">✨ توليد أسئلة مقابلة</span></button></div>`
+                }
+            },
+            mosharaq: {
+                title: { en: 'Senior Document Controller at Mosharaq Real Estate', ar: 'مراقب أول وثائق في شركة مشارق للتطوير العقاري' },
+                content: {
+                    en: `<h4>Project:</h4><p>Ivoire West Project, a large-scale residential and commercial compound (500+ villas, 100 buildings).</p><h4>Foundational Role (Owner's Representative):</h4><ul><li>In a complex environment with 15+ contractors and 2 consultant offices, I designed and established a comprehensive document workflow and coding system from scratch.</li><li>Established the foundational rules for document submission and retrieval between all project parties.</li></ul><h4>Administrative & Technical Role:</h4><ul><li>Acted as the central link between the head office and the project site, coordinating between crucial departments like HR, IT, and Contracts.</li><li>Managed the documentation for all major works including soil replacement, concrete, and construction, tracking reports, material approvals, and contractor deliverables.</li></ul><p><strong>Key Achievement:</strong> Honored as "Employee of the Month" (July 2024) in recognition of my efforts in building and implementing the document cycle system that streamlined project operations.</p><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="mosharaq"><span data-key="generateQuestionsBtn">✨ Generate Interview Questions</span></button></div>`,
+                    ar: `<h4>المشروع:</h4><p>مشروع إيفوار ويست، كمبوند سكني وتجاري ضخم (أكثر من 500 فيلا و 100 عمارة).</p><h4>الدور التأسيسي (ممثل المالك):</h4><ul><li>في بيئة معقدة تضم أكثر من 15 مقاولًا ومكتبين استشاريين، قمت بتصميم وتأسيس دورة عمل ونظام تكويد شامل للمستندات من الصفر.</li><li>وضعت القواعد الأساسية لتقديم واستلام المستندات بين جميع أطراف المشروع.</li></ul><h4>الدور الإداري والفني:</h4><ul><li>عملت كحلقة وصل مركزية بين المقر الرئيسي وموقع المشروع، منسقًا بين الإدارات الحيوية مثل الموارد البشرية وتكنولوجيا المعلومات والعقود.</li><li>إدارة وثائق جميع الأعمال الرئيسية بما في ذلك إحلال التربة والخرسانة والإنشاءات، وتتبع التقارير وموافقات المواد ومخرجات المقاولين.</li></ul><p><strong>إنجاز رئيسي:</strong> تم تكريمي بجائزة "موظف الشهر" (يوليو 2024) تقديراً لجهودي في بناء وتنفيذ نظام دورة المستندات الذي ساهم في تبسيط عمليات المشروع.</p><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="mosharaq"><span data-key="generateQuestionsBtn">✨ توليد أسئلة مقابلة</span></button></div>`
+                }
+            },
+            marakez: {
+                title: { en: 'Document Controller at Marakez Real Estate', ar: 'منسق مستندات في شركة مراكز للتطوير العقاري' },
+                content: { en: `<h4>Project:</h4><p>District 5 (Commercial & Residential)</p><h4>Technical Role:</h4><ul><li>Managed the flow of technical documents between the main contractor and consultant.</li><li>Archived and organized documents according to project phases (concrete, finishes, etc.), creating detailed logs for tracking and retrieval.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="marakez"><span data-key="generateQuestionsBtn">✨ Generate Interview Questions</span></button></div>`, ar: `<h4>المشروع:</h4><p>ديستريكت 5 (تجاري وسكني)</p><h4>الدور الفني:</h4><ul><li>إدارة تدفق المستندات الفنية بين المقاول الرئيسي والاستشاري.</li><li>أرشفة وتنظيم المستندات وفقًا لمراحل المشروع (خرسانات، تشطيبات، إلخ)، مع إنشاء سجلات مفصلة للتتبع والاسترجاع.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="marakez"><span data-key="generateQuestionsBtn">✨ توليد أسئلة مقابلة</span></button></div>` }
+            },
+            fas: {
+                title: { en: 'Document Controller (Quality Dept.) at FAS Constructions', ar: 'منسق مستندات (قسم الجودة) في شركة فاس للإنشاءات' },
+                content: { en: `<h4>Role Focus:</h4><p>Specialized in managing all Quality Department documentation for subcontractor works.</p><h4>Technical Role:</h4><ul><li>Reviewed and managed the approval process for technical quality documents.</li><li>Ensured subcontractor submittals complied with consultant requirements and quality standards.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="fas"><span data-key="generateQuestionsBtn">✨ Generate Interview Questions</span></button></div>`, ar: `<h4>تركيز الدور:</h4><p>متخصص في إدارة جميع وثائق قسم الجودة لأعمال المقاولين من الباطن.</p><h4>الدور الفني:</h4><ul><li>مراجعة وإدارة عملية اعتماد مستندات الجودة الفنية.</li><li>ضمان امتثال تقديمات المقاولين من الباطن لمتطلبات الاستشاري ومعايير الجودة.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="fas"><span data-key="generateQuestionsBtn">✨ توليد أسئلة مقابلة</span></button></div>` }
+            },
+            rowad: {
+                title: { en: 'Document Controller (Technical Office) at Rowad Modern Engineering', ar: 'منسق مستندات (المكتب الفني) في شركة الرواد للهندسة الحديثة' },
+                content: { en: `<h4>Role Focus:</h4><p>Embedded within the Technical Office to manage engineering and construction documents.</p><h4>Technical Role:</h4><ul><li>Managed all incoming and outgoing shop drawings and technical documents.</li><li>Ensured the latest revisions of drawings were distributed to the site team.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="rowad"><span data-key="generateQuestionsBtn">✨ Generate Interview Questions</span></button></div>`, ar: `<h4>تركيز الدور:</h4><p>العمل داخل المكتب الفني لإدارة المستندات الهندسية والإنشائية.</p><h4>الدور الفني:</h4><ul><li>إدارة جميع الرسومات التنفيذية والوثائق الفنية الواردة والصادرة.</li><li>التأكد من توزيع أحدث مراجعات الرسومات على فريق الموقع.</li></ul><div class="mt-4 pt-4 border-t border-border-color"><button class="gemini-questions-btn text-sm font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent-secondary/10 text-accent-secondary hover:bg-accent-secondary/20 transition-colors w-full justify-center" data-experience="rowad"><span data-key="generateQuestionsBtn">✨ توليد أسئلة مقابلة</span></button></div>` }
+            },
+        },
+        detailsModalContent: {
+            offer1: {
+                titleKey: 'offer1_title',
+                content: {
+                    en: `<h4>From Blueprint to Execution</h4><p>We build your document control ecosystem from scratch. This begins with a thorough analysis of project requirements to design a bespoke Electronic Document Management System (EDMS). We establish a logical coding structure and clear naming conventions, create Standard Operating Procedures (SOPs) for every process, and implement robust workflows for submittals, reviews, and approvals. The final stage involves training your team to ensure seamless adoption and adherence to the new system, creating a single source of truth from day one.</p><h5>Example:</h5><p>For a new mega-project, we designed a matrix that assigned a unique code to over 50 document types across 10 different disciplines. This prevented duplication and reduced document search time by an average of 70%.</p>`,
+                    ar: `<h4>من الفكرة إلى التنفيذ</h4><p>نقوم ببناء منظومة التحكم بالمستندات الخاصة بك من الصفر. نبدأ بتحليل شامل لمتطلبات المشروع لتصميم نظام إلكتروني مخصص لإدارة المستندات (EDMS). نؤسس هيكل تكويد منطقي ومعايير تسمية واضحة، ونطور إجراءات تشغيل قياسية (SOPs) لكل عملية، ونطبق دورات عمل قوية للتقديمات والمراجعات والاعتمادات. المرحلة الأخيرة تشمل تدريب فريقك لضمان تبني النظام الجديد بسلاسة والالتزام به، مما يخلق مصدرًا موثوقًا وحيدًا للحقيقة منذ اليوم الأول.</p><h5>مثال عملي:</h5><p>في مشروع ضخم جديد، قمنا بتصميم مصفوفة تكويد فريدة لأكثر من 50 نوعًا من المستندات عبر 10 تخصصات مختلفة. أدى ذلك إلى منع الازدواجية وتقليل وقت البحث عن المستندات بنسبة 70٪ في المتوسط.</p>`
+                }
+            },
+            offer2: {
+                titleKey: 'offer2_title',
+                content: {
+                    en: `<h4>Enhancing Efficiency Through Smart Solutions</h4><p>We identify and eliminate inefficiencies in your current document workflows. Through detailed process mapping, we pinpoint bottlenecks, such as slow review cycles or manual data entry. We then introduce automation using tools like Python or VBA to handle repetitive tasks, like batch file renaming or generating daily status reports. Our goal is to apply continuous improvement principles to save time, reduce human error, and accelerate the overall project timeline.</p><h5>Example:</h5><p>By developing a simple Python script, we automated the generation of a weekly "Overdue Submittals" report that previously took 4 hours of manual work each week. The process now runs in under 30 seconds, freeing up valuable time for more critical tasks.</p>`,
+                    ar: `<h4>تعزيز الكفاءة من خلال حلول ذكية</h4><p>نحدد ونزيل نقاط عدم الكفاءة في دورة عمل المستندات الحالية لديك. من خلال تحليل دقيق للعمليات، نكتشف الاختناقات، مثل دورات المراجعة البطيئة أو إدخال البيانات اليدوي. بعد ذلك، نقدم الأتمتة باستخدام أدوات مثل Python أو VBA لمعالجة المهام المتكررة، مثل إعادة تسمية الملفات دفعة واحدة أو إنشاء تقارير الحالة اليومية. هدفنا هو تطبيق مبادئ التحسين المستمر لتوفير الوقت وتقليل الأخطاء البشرية وتسريع الجدول الزمني للمشروع.</p><h5>مثال عملي:</h5><p>من خلال تطوير سكربت بايثون بسيط، قمنا بأتمتة إنشاء تقرير "التقديمات المتأخرة" الأسبوعي الذي كان يستغرق 4 ساعات من العمل اليدوي أسبوعيًا. الآن، تتم العملية في أقل من 30 ثانية، مما يوفر وقتًا ثمينًا لمهام أكثر أهمية.</p>`
+                }
+            },
+            offer3: {
+                titleKey: 'offer3_title',
+                content: {
+                    en: `<h4>Transforming Data into Decisions</h4><p>We transform raw project data into strategic assets. Using Power BI, we connect to your data sources to create live, interactive dashboards. These dashboards visualize Key Performance Indicators (KPIs) like document turnaround time, approval rates, and overdue items. This allows senior management to move beyond simple reports and perform trend analysis, identify potential risks early, and make informed, data-driven decisions to keep the project on track.</p><h5>Example:</h5><p>We created a Power BI dashboard for a client that visualized the average review time for each engineering discipline. Management quickly identified that one department was a consistent bottleneck, allowing them to allocate more resources and resolve the issue before it impacted the schedule.</p>`,
+                    ar: `<h4>تحويل البيانات إلى قرارات</h4><p>نحوّل بيانات المشروع الأولية إلى أصول استراتيجية. باستخدام Power BI، نتصل بمصادر بياناتك لإنشاء لوحات معلومات تفاعلية وحية. تعرض هذه اللوحات مؤشرات الأداء الرئيسية (KPIs) مثل متوسط وقت إنجاز المستندات ومعدلات الاعتماد والبنود المتأخرة. هذا يسمح للإدارة العليا بتجاوز التقارير البسيطة والقيام بتحليل الاتجاهات وتحديد المخاطر المحتملة مبكرًا واتخاذ قرارات مستنيرة ومبنية على البيانات للحفاظ على مسار المشروع.</p><h5>مثال عملي:</h5><p>أنشأنا لوحة بيانات Power BI لأحد العملاء تعرض متوسط وقت المراجعة لكل تخصص هندسي. تمكنت الإدارة بسرعة من تحديد أن أحد الأقسام كان يمثل عنق زجاجة دائمًا، مما سمح لهم بتخصيص المزيد من الموارد وحل المشكلة قبل أن تؤثر على الجدول الزمني.</p>`
+                }
+            },
+            approach1: {
+                titleKey: 'approach_card1_title',
+                content: { en: `<h4>Protecting Your Most Valuable Asset: Information</h4><p>Security is paramount. We implement strict Role-Based Access Control (RBAC) within the EDMS, ensuring that individuals can only view or edit documents pertinent to their role. Every action—from viewing to downloading—is logged in an unalterable audit trail. This not only prevents unauthorized access but also provides a complete history of a document's lifecycle for accountability and compliance.</p>`, ar: `<h4>حماية أثمن أصولك: المعلومات</h4><p>الأمان هو الأهم. نطبق ضوابط وصول صارمة قائمة على الأدوار (RBAC) داخل نظام إدارة المستندات الإلكتروني، مما يضمن أن الأفراد يمكنهم فقط عرض أو تعديل المستندات المتعلقة بدورهم. يتم تسجيل كل إجراء - من العرض إلى التنزيل - في سجل تدقيق غير قابل للتغيير. هذا لا يمنع الوصول غير المصرح به فحسب، بل يوفر أيضًا تاريخًا كاملاً لدورة حياة المستند لمساءلة والامتثال.</p>` }
+            },
+            approach2: {
+                titleKey: 'approach_card2_title',
+                content: { en: `<h4>The Right Information, at the Right Time</h4><p>We create a centralized 'Single Source of Truth'. By enforcing strict version control, we eliminate the risk of teams working with outdated information. Our systems are designed with powerful metadata and indexing, making document retrieval instantaneous through simple keyword searches. This ensures that whether your team is in the office or on-site, they have immediate access to the latest approved documents.</p>`, ar: `<h4>المعلومة الصحيحة، في الوقت الصحيح</h4><p>نخلق "مصدرًا موثوقًا وحيدًا للحقيقة". من خلال فرض رقابة صارمة على الإصدارات، نزيل مخاطر عمل الفرق بمعلومات قديمة. تم تصميم أنظمتنا ببيانات وصفية وفهرسة قوية، مما يجعل استرجاع المستندات فوريًا من خلال عمليات بحث بسيطة بالكلمات الرئيسية. هذا يضمن أنه سواء كان فريقك في المكتب أو في الموقع، فإن لديهم وصولاً فوريًا إلى أحدث المستندات المعتمدة.</p>` }
+            },
+            approach3: {
+                titleKey: 'approach_card3_title',
+                content: { en: `<h4>Audit-Ready, Always</h4><p>Our systems are built with compliance at their core. We ensure that all processes adhere to international standards like ISO 9001 and any project-specific legal or contractual requirements. Workflows are configured to enforce these procedures automatically. This means that at any given moment, your project is ready for an internal or external audit, with a clear, traceable, and defensible record of every document transaction.</p>`, ar: `<h4>جاهزون للتدقيق، دائمًا</h4><p>تم بناء أنظمتنا مع الامتثال في جوهرها. نحن نضمن أن جميع العمليات تلتزم بالمعايير الدولية مثل ISO 9001 وأي متطلبات قانونية أو تعاقدية خاصة بالمشروع. يتم تكوين دورات العمل لفرض هذه الإجراءات تلقائيًا. هذا يعني أنه في أي لحظة، يكون مشروعك جاهزًا للتدقيق الداخلي أو الخارجي، مع سجل واضح وقابل للتتبع ويمكن الدفاع عنه لكل معاملة مستندية.</p>` }
+            },
+            wf1: { titleKey: 'wf1', content: {en: `<h4>Objective: Formally receive information from the contractor.</h4><ul><li><strong>Key Activities:</strong> Receive submittal via official channels (e.g., Aconex). Check for completeness against the transmittal. Perform a preliminary check for compliance with the document numbering system.</li><li><strong>Importance:</strong> This is the official entry point. A robust check here prevents incorrect or incomplete information from wasting the time of the review team.</li></ul>`, ar: `<h4>الهدف: استلام المعلومات بشكل رسمي من المقاول.</h4><ul><li><strong>الأنشطة الرئيسية:</strong> استلام التقديم عبر القنوات الرسمية (مثل Aconex). التحقق من اكتمال المستندات مقارنةً بخطاب الإرسال. إجراء فحص أولي للتأكد من توافقها مع نظام ترقيم المستندات.</li><li><strong>الأهمية:</strong> هذه هي نقطة الدخول الرسمية. الفحص الدقيق هنا يمنع المعلومات غير الصحيحة أو غير المكتملة من إضاعة وقت فريق المراجعة.</li></ul>`}},
+            wf2: { titleKey: 'wf2', content: {en: `<h4>Objective: Log and prepare the submittal for internal review.</h4><ul><li><strong>Key Activities:</strong> Log the submittal in the Master Document Register (MDR). Assign a unique internal tracking number. Verify metadata (revision, status, date). Prepare the document for distribution.</li><li><strong>Importance:</strong> The MDR is the project's single source of truth. Accurate logging is critical for tracking, reporting, and creating a reliable audit trail.</li></ul>`, ar: `<h4>الهدف: تسجيل وتحضير التقديم للمراجعة الداخلية.</h4><ul><li><strong>الأنشطة الرئيسية:</strong> تسجيل التقديم في سجل المستندات الرئيسي (MDR). تعيين رقم تتبع داخلي فريد. التحقق من البيانات الوصفية (الإصدار، الحالة، التاريخ). تحضير المستند للتوزيع.</li><li><strong>الأهمية:</strong> سجل المستندات الرئيسي هو مصدر الحقيقة الوحيد للمشروع. التسجيل الدقيق أمر بالغ الأهمية للتتبع وإعداد التقارير وإنشاء سجل تدقيق موثوق.</li></ul>`}},
+            wf4: { titleKey: 'wf4', content: {en: `<h4>Objective: Obtain technical feedback from subject matter experts.</h4><ul><li><strong>Key Activities:</strong> The assigned reviewers (engineers, architects) perform a detailed technical review. Comments are added, often using digital markup tools. A formal review status is assigned (e.g., A-Approved, B-Approved with Comments, C-Rejected).</li><li><strong>Importance:</strong> This is the core technical validation step. It ensures that the proposed work meets the project's quality, safety, and design standards before execution begins.</li></ul>`, ar: `<h4>الهدف: الحصول على ملاحظات فنية من الخبراء المختصين.</h4><ul><li><strong>الأنشطة الرئيسية:</strong> يقوم المراجعون المعينون (مهندسون، معماريون) بإجراء مراجعة فنية مفصلة. تتم إضافة التعليقات، غالبًا باستخدام أدوات التوصيف الرقمية. يتم تعيين حالة مراجعة رسمية (على سبيل المثال، A-معتمد، B-معتمد مع ملاحظات، C-مرفوض).</li><li><strong>الأهمية:</strong> هذه هي خطوة التحقق الفني الأساسية. إنها تضمن أن العمل المقترح يفي بمعايير الجودة والسلامة والتصميم للمشروع قبل بدء التنفيذ.</li></ul>`}},
+            wf6: { titleKey: 'wf6', content: {en: `<h4>Objective: Securely store the final record and close the transaction.</h4><ul><li><strong>Key Activities:</strong> The final, approved document is formally transmitted back to the contractor. The document is moved to the "As-Built" or final archive in the EDMS. The status in the MDR is updated to "Closed."</li><li><strong>Importance:</strong> This creates the final, legally binding record of what was approved. A complete and accurate archive is essential for facility management, future works, and resolving any potential disputes.</li></ul>`, ar: `<h4>الهدف: تخزين السجل النهائي بشكل آمن وإغلاق المعاملة.</h4><ul><li><strong>الأنشطة الرئيسية:</strong> يتم إرسال المستند النهائي المعتمد رسميًا إلى المقاول. يتم نقل المستند إلى أرشيف "كما تم تنفيذه" أو الأرشيف النهائي في نظام إدارة المستندات الإلكتروني. يتم تحديث الحالة في سجل المستندات الرئيسي إلى "مغلق".</li><li><strong>الأهمية:</strong> هذا ينشئ السجل النهائي والملزم قانونًا لما تمت الموافقة عليه. يعد الأرشيف الكامل والدقيق ضروريًا لإدارة المرافق والأعمال المستقبلية وحل أي نزاعات محتملة.</li></ul>`}},
+            excel: { titleKey: 'skill_excel', content: { en: `<h4>Core Applications:</h4><ul><li>Creating and managing comprehensive document logs (submittals, transmittals, correspondence).</li><li>Using PivotTables and charts to summarize document statuses for weekly/monthly reports.</li><li>Applying formulas (VLOOKUP, INDEX/MATCH) and conditional formatting to track review cycles and highlight overdue items.</li><li>Utilizing Power Query to clean and consolidate data from multiple sources for analysis.</li></ul><h4>Business Impact:</h4><p>Transformed raw data into actionable insights, enabling management to identify bottlenecks and make proactive decisions. Reduced manual reporting time by over 60% in previous roles.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>إنشاء وإدارة سجلات المستندات الشاملة (التقديمات، المراسلات، إلخ).</li><li>استخدام الجداول والمخططات المحورية لتلخيص حالات المستندات في التقارير الأسبوعية والشهرية.</li><li>تطبيق الصيغ (VLOOKUP, INDEX/MATCH) والتنسيق الشرطي لتتبع دورات المراجعة وتحديد البنود المتأخرة.</li><li>استخدام Power Query لتنظيف ودمج البيانات من مصادر متعددة لتحليلها.</li></ul><h4>الأثر على العمل:</h4><p>تحويل البيانات الأولية إلى رؤى قابلة للتنفيذ، مما مكّن الإدارة من تحديد الاختناقات واتخاذ قرارات استباقية. تقليل وقت إعداد التقارير اليدوية بأكثر من 60٪ في الأدوار السابقة.</p>` } },
+            word: { titleKey: 'skill_word', content: { en: `<h4>Core Applications:</h4><ul><li>Drafting and formatting official project correspondence, letters, and memos.</li><li>Creating standardized templates for recurring documents like transmittal sheets and meeting minutes.</li><li>Using the 'Track Changes' feature to manage revisions during collaborative document reviews.</li><li>Preparing final document packages for formal submission.</li></ul><h4>Business Impact:</h4><p>Ensured consistency and professionalism in all project communications. Standardized templates reduced document creation time and minimized errors.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>صياغة وتنسيق المراسلات الرسمية للمشروع والخطابات والمذكرات.</li><li>إنشاء قوالب موحدة للمستندات المتكررة مثل نماذج الإرسال ومحاضر الاجتماعات.</li><li>استخدام خاصية 'تعقب التغييرات' لإدارة المراجعات أثناء عمليات المراجعة التعاونية للمستندات.</li><li>إعداد حزم المستندات النهائية للتقديم الرسمي.</li></ul><h4>الأثر على العمل:</h4><p>ضمان الاتساق والاحترافية في جميع اتصالات المشروع. قللت القوالب الموحدة من وقت إنشاء المستندات وقللت من الأخطاء.</p>` } },
+            outlook: { titleKey: 'skill_outlook', content: { en: `<h4>Core Applications:</h4><ul><li>Managing the official project email account, ensuring all correspondence is logged and archived correctly.</li><li>Creating rules to automatically organize incoming mail by project, sender, or subject.</li><li>Using calendar features to schedule critical review meetings and track deadlines.</li><li>Archiving email threads as official records to support the document trail.</li></ul><h4>Business Impact:</h4><p>Maintained a fully auditable trail of all communications, crucial for resolving disputes. Improved team coordination and ensured no critical communication was missed.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>إدارة البريد الإلكتروني الرسمي للمشروع، وضمان تسجيل وأرشفة جميع المراسلات بشكل صحيح.</li><li>إنشاء قواعد لتنظيم البريد الوارد تلقائيًا حسب المشروع أو المرسل أو الموضوع.</li><li>استخدام ميزات التقويم لجدولة اجتماعات المراجعة الهامة وتتبع المواعيد النهائية.</li><li>أرشفة سلاسل البريد الإلكتروني كسجلات رسمية لدعم مسار المستندات.</li></ul><h4>الأثر على العمل:</h4><p>الحفاظ على مسار قابل للتدقيق بالكامل لجميع الاتصالات، وهو أمر حاسم لحل النزاعات. تحسين تنسيق الفريق وضمان عدم تفويت أي اتصال حاسم.</p>` } },
+            powerbi: { titleKey: 'skill_powerbi', content: { en: `<h4>Core Applications:</h4><ul><li>Connecting to Excel tracking sheets to create live, interactive dashboards for senior management.</li><li>Visualizing key performance indicators (KPIs) such as document approval times and workflow bottlenecks.</li><li>Creating reports that allow stakeholders to filter and drill down into specific document data.</li></ul><h4>Business Impact:</h4><p>Provided senior management with a real-time, high-level view of project health, enabling faster, data-driven decision-making. Replaced static weekly reports with dynamic, on-demand analytics.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>الربط مع ملفات تتبع الإكسل لإنشاء لوحات معلومات تفاعلية وحية للإدارة العليا.</li><li>عرض مؤشرات الأداء الرئيسية (KPIs) بشكل مرئي، مثل أوقات اعتماد المستندات وعوائق سير العمل.</li><li>إنشاء تقارير تسمح لأصحاب المصلحة بتصفية والتعمق في بيانات مستندات محددة.</li></ul><h4>الأثر على العمل:</h4><p>تزويد الإدارة العليا برؤية حية وعالية المستوى عن صحة المشروع، مما يتيح اتخاذ قرارات أسرع ومبنية على البيانات. استبدال التقارير الأسبوعية الثابتة بتحليلات ديناميكية عند الطلب.</p>` } },
+            python: { titleKey: 'skill_python', content: { en: `<h4>Core Applications:</h4><ul><li>Writing basic scripts to automate repetitive tasks, such as renaming thousands of files to comply with the project's coding system.</li><li>Extracting data from multiple Excel or CSV files and consolidating it into a single master file for reporting.</li><li>Automating the process of generating simple daily progress reports from raw data logs.</li></ul><h4>Business Impact:</h4><p>Eliminated hundreds of hours of manual, error-prone work through automation. Increased data processing accuracy to nearly 100% and enabled more frequent reporting.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>كتابة سكربتات بسيطة لأتمتة المهام المتكررة، مثل إعادة تسمية آلاف الملفات لتتوافق مع نظام التكويد الخاص بالمشروع.</li><li>استخراج البيانات من ملفات Excel أو CSV متعددة ودمجها في ملف رئيسي واحد لإعداد التقارير.</li><li>أتمتة عملية إنشاء تقارير تقدم يومية بسيطة من سجلات البيانات الأولية.</li></ul><h4>الأثر على العمل:</h4><p>توفير مئات الساعات من العمل اليدوي المعرض للخطأ من خلال الأتمتة. زيادة دقة معالجة البيانات إلى ما يقرب من 100٪ وتمكين إعداد تقارير أكثر تكرارًا.</p>` } },
+            sharepoint: { titleKey: 'skill_sharepoint', content: { en: `<h4>Core Applications:</h4><ul><li>Setting up and structuring project document libraries and folders.</li><li>Managing user permissions to ensure stakeholders have access only to relevant information (Role-Based Access Control).</li><li>Implementing version control to maintain a clear history of document revisions.</li><li>Creating simple approval workflows for internal document reviews.</li></ul><h4>Business Impact:</h4><p>Established a secure, centralized repository for internal project documents, improving collaboration and ensuring a single source of truth for the project team.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>إعداد وهيكلة مكتبات ومجلدات مستندات المشروع.</li><li>إدارة أذونات المستخدمين لضمان وصول أصحاب المصلحة إلى المعلومات ذات الصلة فقط (التحكم في الوصول القائم على الأدوار).</li><li>تطبيق التحكم في الإصدارات للحفاظ على سجل واضح لمراجعات المستندات.</li><li>إنشاء دورات عمل بسيطة للموافقات لمراجعات المستندات الداخلية.</li></ul><h4>الأثر على العمل:</h4><p>إنشاء مستودع مركزي وآمن لوثائق المشروع الداخلية، مما أدى إلى تحسين التعاون وضمان وجود مصدر موثوق واحد للحقيقة لفريق المشروع.</p>` } },
+            aconex: { titleKey: 'skill_aconex', content: { en: `<h4>Core Applications:</h4><ul><li>Managing the entire formal project communication and documentation flow between client, consultant, and contractor.</li><li>Issuing official document transmittals and tracking their receipt and response status.</li><li>Using the platform's workflow module to manage complex review and approval cycles.</li><li>Generating audit trails and reports to demonstrate compliance and track project history.</li></ul><h4>Business Impact:</h4><p>Ensured 100% compliance with contractual communication requirements. Provided an unalterable audit trail that protected the company during disputes and claims.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>إدارة تدفق الاتصالات والتوثيق الرسمي الكامل للمشروع بين العميل والاستشاري والمقاول.</li><li>إصدار إرساليات المستندات الرسمية وتتبع استلامها وحالة الرد عليها.</li><li>استخدام وحدة سير العمل في المنصة لإدارة دورات المراجعة والموافقة المعقدة.</li><li>إنشاء مسارات تدقيق وتقارير لإثبات الامتثال وتتبع تاريخ المشروع.</li></ul><h4>الأثر على العمل:</h4><p>ضمان الامتثال بنسبة 100٪ لمتطلبات الاتصال التعاقدية. توفير مسار تدقيق غير قابل للتغيير حمى الشركة أثناء النزاعات والمطالبات.</p>` } },
+            autocad: { titleKey: 'skill_autocad', content: { en: `<h4>Core Applications:</h4><ul><li>Opening, viewing, and navigating engineering drawings (DWG files) to verify information.</li><li>Checking title blocks for revision numbers, dates, and approval statuses.</li><li>Using basic measurement tools to clarify dimensions when needed.</li><li>Printing and plotting drawings for distribution to site teams. (Note: Primarily for review, not drafting).</li></ul><h4>Business Impact:</h4><p>Acted as a crucial quality gate, ensuring that document metadata matched the information on the drawings themselves, preventing costly construction errors based on incorrect revisions.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>فتح وعرض وتصفح الرسومات الهندسية (ملفات DWG) للتحقق من المعلومات.</li><li>فحص لوحات العنوان لأرقام المراجعة والتواريخ وحالات الموافقة.</li><li>استخدام أدوات القياس الأساسية لتوضيح الأبعاد عند الحاجة.</li><li>طباعة الرسومات لتوزيعها على فرق الموقع. (ملاحظة: للمراجعة بشكل أساسي، وليس للرسم).</li></ul><h4>الأثر على العمل:</h4><p>العمل كبوابة جودة حاسمة، مما يضمن تطابق البيانات الوصفية للمستند مع المعلومات الموجودة على الرسومات نفسها، مما يمنع أخطاء البناء المكلفة القائمة على مراجعات غير صحيحة.</p>` } },
+            acrobat: { titleKey: 'skill_acrobat', content: { en: `<h4>Core Applications:</h4><ul><li>Combining multiple file types (Word, Excel, DWG) into a single, standardized PDF package for formal submittal.</li><li>Applying official stamps (e.g., 'APPROVED', 'FOR CONSTRUCTION') and digital signatures.</li><li>Using markup and comment tools to collate feedback from multiple reviewers into one document.</li><li>Securing sensitive documents with passwords and permissions.</li></ul><h4>Business Impact:</h4><p>Streamlined the submittal packaging process, ensuring professional and secure submissions every time. Centralized review comments, making it easier for design teams to address feedback.</p>`, ar: `<h4>الاستخدامات الأساسية:</h4><ul><li>دمج أنواع ملفات متعددة (Word، Excel، DWG) في حزمة PDF واحدة وموحدة للتقديم الرسمي.</li><li>تطبيق الأختام الرسمية (مثل 'معتمد'، 'للتنفيذ') والتوقيعات الرقمية.</li><li>استخدام أدوات التوصيف والتعليق لتجميع الملاحظات من عدة مراجعين في مستند واحد.</li><li>تأمين المستندات الحساسة بكلمات مرور وأذونات.</li></ul><h4>الأثر على العمل:</h4><p>تبسيط عملية تجميع التقديمات، مما يضمن تقديمات احترافية وآمنة في كل مرة. مركزية تعليقات المراجعة، مما يسهل على فرق التصميم معالجة الملاحظات.</p>` } },
+            docmanagement: { titleKey: 'ps7', content: { en: `<h4>Core Competency:</h4><p>This is the foundation of my expertise. It involves designing and implementing the full document lifecycle from creation to archiving, establishing coding systems and version control protocols, ensuring quick and accurate retrieval of documents, and managing both physical and digital archives according to ISO standards.</p><h4>Business Impact:</h4><p>Creates order from chaos, mitigates risk, ensures project compliance, and provides the "single source of truth" that high-performing project teams rely on.</p>`, ar: `<h4>الكفاءة الأساسية:</h4><p>هذا هو أساس خبرتي. ويشمل تصميم وتنفيذ دورة حياة المستندات الكاملة من الإنشاء إلى الأرشفة، وإنشاء أنظمة تكويد وبروتوكولات للتحكم في الإصدارات، وضمان استرجاع المستندات بسرعة ودقة، وإدارة الأرشيف المادي والرقمي وفقًا لمعايير ISO.</p><h4>الأثر على العمل:</h4><p>يخلق النظام من الفوضى، ويخفف من المخاطر، ويضمن امتثال المشروع، ويوفر "مصدر الحقيقة الوحيد" الذي تعتمد عليه فرق المشاريع عالية الأداء.</p>` } },
+            leadership: { titleKey: 'ps1', content: { en: `<h4>Core Competency:</h4><p>I guide and mentor junior document controllers, providing on-the-job training to build a capable team. I delegate tasks effectively to ensure workload is balanced and deadlines are met, set clear performance expectations, and provide constructive feedback to foster growth.</p><h4>Business Impact:</h4><p>Develops a self-sufficient and highly competent document control team, reducing dependency on a single person and improving the overall resilience and efficiency of the department.</p>`, ar: `<h4>الكفاءة الأساسية:</h4><p>أقوم بتوجيه وتدريب مراقبي المستندات المبتدئين، وتوفير التدريب العملي لبناء فريق قادر. أقوم بتفويض المهام بفعالية لضمان توازن عبء العمل والالتزام بالمواعيد النهائية، وتحديد توقعات أداء واضحة، وتقديم ملاحظات بناءة لتعزيز النمو.</p><h4>الأثر على العمل:</h4><p>يطور فريق تحكم في المستندات مكتفٍ ذاتيًا وذو كفاءة عالية، مما يقلل من الاعتماد على شخص واحد ويحسن المرونة والكفاءة العامة للقسم.</p>` } },
+            communication: { titleKey: 'ps2', content: { en: `<h4>Core Competency:</h4><p>I serve as the central communication hub for all document-related matters, ensuring a clear and concise flow of information between contractors, consultants, and internal departments. This involves drafting professional correspondence to avoid misunderstandings and facilitating meetings to resolve documentation conflicts.</p><h4>Business Impact:</h4><p>Prevents costly delays and rework caused by miscommunication. Ensures all stakeholders are aligned and working from the same information, fostering a collaborative project environment.</p>`, ar: `<h4>الكفاءة الأساسية:</h4><p>أعمل كمركز اتصالات مركزي لجميع الأمور المتعلقة بالمستندات، مما يضمن تدفقًا واضحًا وموجزًا للمعلومات بين المقاولين والاستشاريين والإدارات الداخلية. وهذا يشمل صياغة المراسلات المهنية لتجنب سوء الفهم وتسهيل الاجتماعات لحل النزاعات المتعلقة بالتوثيق.</p><h4>الأثر على العمل:</h4><p>يمنع التأخيرات المكلفة وإعادة العمل الناتجة عن سوء التواصل. يضمن أن جميع أصحاب المصلحة متوافقون ويعملون من نفس المعلومات، مما يعزز بيئة مشروع تعاونية.</p>` } },
+            decision: { titleKey: 'ps3', content: { en: `<h4>Core Competency:</h4><p>I make timely, data-driven decisions regarding document prioritization to meet critical project milestones. This includes assessing discrepancies, deciding on the correct course of action, and knowing when to escalate issues to project management to prevent delays.</p><h4>Business Impact:</h4><p>Keeps the project moving forward by resolving document-related issues swiftly and effectively. Protects the project schedule by proactively addressing potential roadblocks before they become critical.</p>`, ar: `<h4>الكفاءة الأساسية:</h4><p>أتخذ قرارات في الوقت المناسب ومبنية على البيانات بشأن أولويات المستندات لتحقيق معالم المشروع الهامة. وهذا يشمل تقييم التناقضات، واتخاذ قرار بشأن مسار العمل الصحيح، ومعرفة متى يتم تصعيد المشكلات إلى إدارة المشروع لمنع التأخير.</p><h4>الأثر على العمل:</h4><p>يحافظ على تقدم المشروع من خلال حل المشكلات المتعلقة بالمستندات بسرعة وفعالية. يحمي الجدول الزمني للمشروع من خلال معالجة العقبات المحتملة بشكل استباقي قبل أن تصبح حرجة.</p>` } },
+            problemsolving: { titleKey: 'ps4', content: { en: `<h4>Core Competency:</h4><p>I excel at identifying the root cause of document control bottlenecks, such as delayed reviews or inconsistent numbering. I then develop and implement practical solutions to streamline these inefficient workflows and resolve conflicts before they impact the wider team.</p><h4>Business Impact:</h4><p>Leads to continuous process improvement. By solving problems at their source, I enhance the efficiency and reliability of the entire document management system, saving time and money.</p>`, ar: `<h4>الكفاءة الأساسية:</h4><p>أتفوق في تحديد السبب الجذري لمعوقات التحكم في المستندات، مثل المراجعات المتأخرة أو الترقيم غير المتسق. ثم أقوم بتطوير وتنفيذ حلول عملية لتبسيط تدفقات العمل غير الفعالة هذه وحل النزاعات قبل أن تؤثر على الفريق الأوسع.</p><h4>الأثر على العمل:</h4><p>يؤدي إلى التحسين المستمر للعملية. من خلال حل المشكلات من مصدرها، أعزز كفاءة وموثوقية نظام إدارة المستندات بأكمله، مما يوفر الوقت والمال.</p>` } },
+            reporting: { titleKey: 'ps5', content: { en: `<h4>Core Competency:</h4><p>I transform raw data from document logs into clear, concise, and visually engaging reports and dashboards. I am skilled at presenting key findings and status updates to senior management in a way that is easy to understand and highlights risks and areas for attention.</p><h4>Business Impact:</h4><p>Empowers leadership with the information they need to steer the project effectively. Turns complex data into a simple narrative, allowing for faster and more accurate strategic decisions.</p>`, ar: `<h4>الكفاءة الأساسية:</h4><p>أقوم بتحويل البيانات الأولية من سجلات المستندات إلى تقارير ولوحات معلومات واضحة وموجزة وجذابة بصريًا. أنا ماهر في تقديم النتائج الرئيسية وتحديثات الحالة إلى الإدارة العليا بطريقة سهلة الفهم وتسلط الضوء على المخاطر والمجالات التي تتطلب الانتباه.</p><h4>الأثر على العمل:</h4><p>يمكّن القيادة بالمعلومات التي يحتاجونها لتوجيه المشروع بفعالية. يحول البيانات المعقدة إلى سرد بسيط، مما يسمح باتخاذ قرارات استراتيجية أسرع وأكثر دقة.</p>` } },
+            compliance: { titleKey: 'ps6', content: { en: `<h4>Core Competency:</h4><p>I am the guardian of project procedures. I conduct regular quality checks to guarantee that workflows are being followed correctly, all documents adhere to coding and formatting standards, and a complete, auditable document trail is maintained for every deliverable.</p><h4>Business Impact:</h4><p>Minimizes the company's exposure to risk, contractual penalties, and legal disputes. Ensures the project is 'audit-ready' at all times, demonstrating professionalism and control to clients and stakeholders.</p>`, ar: `<h4>الكفاءة الأساسية:</h4><p>أنا حارس إجراءات المشروع. أقوم بإجراء فحوصات جودة منتظمة لضمان اتباع تدفقات العمل بشكل صحيح، والتزام جميع المستندات بمعايير التكويد والتنسيق، والحفاظ على مسار مستندي كامل وقابل للتدقيق لكل مخرجات.</p><h4>الأثر على العمل:</h4><p>يقلل من تعرض الشركة للمخاطر والعقوبات التعاقدية والنزاعات القانونية. يضمن أن المشروع "جاهز للتدقيق" في جميع الأوقات، مما يدل على الاحترافية والتحكم للعملاء وأصحاب المصلحة.</p>` } },
+        },
+      };
+
+      // --- Theme (Dark/Light Mode) Logic ---
+      const themeToggle = document.getElementById('theme-toggle');
+      const lightIcon = document.getElementById('theme-icon-light');
+      const darkIcon = document.getElementById('theme-icon-dark');
+      const htmlEl = document.documentElement;
+
+      const applyTheme = (theme) => {
+        if (theme === 'dark') {
+          htmlEl.classList.add('dark');
+          htmlEl.classList.remove('light');
+          lightIcon.classList.add('hidden');
+          darkIcon.classList.remove('hidden');
+        } else {
+          htmlEl.classList.add('light');
+          htmlEl.classList.remove('dark');
+          darkIcon.classList.add('hidden');
+          lightIcon.classList.remove('hidden');
+        }
+      };
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const newTheme = htmlEl.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      });
+
+      // --- Language Switch Logic ---
+      const langSwitchBtn = document.getElementById('langSwitch');
+      const storageKey = 'portfolio_lang_pref';
+      let currentLang = localStorage.getItem(storageKey) || 'en';
+
+      const setLanguage = (lang) => {
+        currentLang = lang;
+        localStorage.setItem(storageKey, lang);
+        htmlEl.lang = lang;
+        htmlEl.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        langSwitchBtn.textContent = lang === 'en' ? 'AR' : 'EN';
+
+        document.querySelectorAll('[data-key]').forEach(el => {
+          const key = el.dataset.key;
+          if (translations[key] && translations[key][lang]) {
+            el.innerHTML = translations[key][lang];
+          }
+        });
+        // Re-render dynamic content that depends on language
+        renderKnowledgeArticles();
+        AOS.refresh();
+      };
+      
+      langSwitchBtn.addEventListener('click', () => setLanguage(currentLang === 'en' ? 'ar' : 'en'));
+      
+
+      // --- KPI Progress Bar & Number Animation ---
+      const kpiObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  const item = entry.target;
+                  const progressBar = item.querySelector('.kpi-progress-bar');
+                  const numberSpan = item.querySelector('.kpi-number');
+                  const target = parseInt(numberSpan.dataset.target, 10);
+
+                  if (progressBar) {
+                      setTimeout(() => {
+                         progressBar.style.width = progressBar.dataset.width;
+                      }, 100);
+                  }
+                  
+                  if(numberSpan) {
+                      let current = 0;
+                      const duration = 1500; // ms
+                      const stepTime = Math.max(10, Math.floor(duration / target));
+
+                      const timer = setInterval(() => {
+                          current++;
+                          numberSpan.textContent = current;
+                          if (current >= target) {
+                              clearInterval(timer);
+                              numberSpan.textContent = target;
+                          }
+                      }, stepTime);
+                  }
+
+                  kpiObserver.unobserve(item);
+              }
+          });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.kpi-item').forEach(item => kpiObserver.observe(item));
+
+      // --- Modal Logic ---
+      const experienceModal = document.getElementById('experienceModal');
+      const experienceModalContent = document.getElementById('experienceModalContent');
+      const experienceModalTitle = document.getElementById('experienceModalTitle');
+      const experienceModalBody = document.getElementById('experienceModalBody');
+      const experienceModalClose = document.getElementById('experienceModalClose');
+
+      const detailsModal = document.getElementById('detailsModal');
+      const detailsModalContent = document.getElementById('detailsModalContent');
+      const detailsModalTitle = document.getElementById('detailsModalTitle');
+      const detailsModalBody = document.getElementById('detailsModalBody');
+      const detailsModalClose = document.getElementById('detailsModalClose');
+
+      const knowledgeModal = document.getElementById('knowledgeModal');
+      const knowledgeModalContent = document.getElementById('knowledgeModalContent');
+      const knowledgeModalTitle = document.getElementById('knowledgeModalTitle');
+      const knowledgeModalBody = document.getElementById('knowledgeModalBody');
+      const knowledgeModalClose = document.getElementById('knowledgeModalClose');
+      
+      const closeModal = (modal, content) => {
+          modal.classList.add('opacity-0', 'pointer-events-none');
+          content.classList.add('scale-95');
+      };
+
+      // Experience Modal Events
+      const openExperienceModal = (expKey) => {
+        const details = translations.experienceDetails[expKey];
+        if (details) {
+            experienceModalTitle.textContent = details.title[currentLang];
+            experienceModalBody.innerHTML = details.content[currentLang];
+            experienceModal.classList.remove('opacity-0', 'pointer-events-none');
+            experienceModalContent.classList.remove('scale-95');
+        }
+      };
+
+      document.querySelectorAll('[data-experience]').forEach(button => {
+          button.addEventListener('click', () => {
+              openExperienceModal(button.dataset.experience);
+          });
+      });
+      experienceModalClose.addEventListener('click', () => closeModal(experienceModal, experienceModalContent));
+      experienceModal.addEventListener('click', (e) => { if(e.target === experienceModal) closeModal(experienceModal, experienceModalContent); });
+
+      // Details Modal Events
+      document.querySelectorAll('[data-modal-key]').forEach(card => {
+          card.addEventListener('click', () => {
+              const modalKey = card.dataset.modalKey;
+              const data = translations.detailsModalContent[modalKey];
+              if(data) {
+                  const titleKey = data.titleKey;
+                  detailsModalTitle.textContent = translations[titleKey][currentLang];
+                  detailsModalBody.innerHTML = data.content[currentLang];
+                  detailsModal.classList.remove('opacity-0', 'pointer-events-none');
+                  detailsModalContent.classList.remove('scale-95');
+              }
+          });
+      });
+      detailsModalClose.addEventListener('click', () => closeModal(detailsModal, detailsModalContent));
+      detailsModal.addEventListener('click', (e) => { if(e.target === detailsModal) closeModal(detailsModal, detailsModalContent); });
+
+      // --- Knowledge Center Logic ---
+      const knowledgeContainer = document.querySelector('#knowledge .grid');
+      const articles = [
+          { id: 'article1', title: { en: 'The Role of Weekly & Monthly Reports', ar: 'ما هو دور التقارير الأسبوعية والشهرية للمستندات؟' }, 
+            content: { 
+                en: `<h4>Introduction</h4><p>Weekly and monthly reports are not just records; they are strategic tools that link project documents to contracts, clauses, and timelines, providing a clear mirror of the project's health.</p><h4>Core Elements</h4><ul><li>Document Status (Approved, Rejected, etc.)</li><li>Submission & Response Dates</li><li>Revision History & Number of Revisions</li><li>Linkage to Project Schedule Clauses</li></ul><h4>Explanation</h4><p>These reports track the lifecycle of every crucial document, such as Inspection Requests. They highlight delays by comparing response times against contractual SLAs. For instance, if a request is returned with comments, it's marked as 'Rejected,' and a new revision is required. The report visualizes this, showing which items are pending and potentially delaying subsequent project phases. By using simple Excel formulas and charts, a Document Controller can calculate overdue items automatically and present a clear picture to management, transforming data entry into proactive project management.</p><h4>Conclusion</h4><p>A well-structured weekly report is a powerful monitoring tool. It connects contracts with execution, identifies problems early, and empowers management to make timely decisions, distinguishing a data recorder from a strategic Document Controller.</p>`,
+                ar: `<h4>المقدمة</h4><p>التقارير الأسبوعية والشهرية ليست مجرد سجلات، بل هي أدوات استراتيجية تربط مستندات المشروع بالعقود والبنود والجداول الزمنية، وتوفر مرآة واضحة لحالة المشروع.</p><h4>العناصر الأساسية</h4><ul><li>حالة المستند (معتمد، مرفوض، إلخ)</li><li>تواريخ الإرسال والرد</li><li>تاريخ المراجعات وعددها</li><li>الربط ببنود الجدول الزمني للمشروع</li></ul><h4>الشرح</h4><p>تتعقب هذه التقارير دورة حياة كل مستند حيوي، مثل طلبات الاستلام (Inspection Requests). هي تسلط الضوء على التأخيرات من خلال مقارنة أوقات الرد مع المدد المتفق عليها في العقد. على سبيل المثال، إذا تم إرجاع طلب مع ملاحظات، يتم تسجيله كـ "مرفوض"، ويتطلب إصدارًا جديدًا. يوضح التقرير هذا الأمر، مبينًا أي البنود معلقة وقد تؤخر مراحل المشروع اللاحقة. باستخدام معادلات Excel والمخططات البيانية البسيطة، يمكن لمراقب الوثائق حساب العناصر المتأخرة تلقائيًا وتقديم صورة واضحة للإدارة، محولاً إدخال البيانات إلى إدارة استباقية للمشروع.</p><h4>الخاتمة</h4><p>التقرير الأسبوعي المنظم هو أداة متابعة قوية. يربط بين العقود والتنفيذ، ويكشف المشاكل مبكرًا، ويمكّن الإدارة من اتخاذ قرارات صائبة في الوقت المناسب، مما يميز بين مسجل البيانات ومراقب الوثائق الاستراتيجي.</p>`
+            }},
+          { id: 'article2', title: { en: 'Managing a Data Loss Crisis in Construction', ar: 'كيفية إدارة أزمة فقدان البيانات في مشروع إنشائي' }, 
+            content: {
+                en: `<h4>Introduction</h4><p>Data loss in a construction project is a major crisis, but it can be managed with a calm, systematic approach. The key is to secure the environment, analyze the situation, and rebuild the system methodically.</p><h4>Core Elements</h4><ul><li>Immediate Assessment & Security</li><li>Data Collection from All Parties</li><li>Systematic Rebuilding of Registers</li><li>Clear Communication & Prioritization</li></ul><h4>Explanation</h4><p>The first step is to secure the system by revoking old access and documenting the incident. Then, begin collecting all available data: physical documents, emails from the team, and official copies from consultants and contractors. This data should be sorted and cataloged in a preliminary Excel sheet. Simultaneously, rebuild the Master Deliverable Register (MDR) based on the project contract and scope. Establish a temporary, simple folder structure and coding system. Prioritize the recovery of critical documents like approved drawings (IFC) and material approvals that impact immediate site activities. Communicate professionally with all stakeholders, explaining the situation and requesting their cooperation. Finally, establish a simple but robust system (e.g., SharePoint + structured Excel) and implement a "3-2-1" backup policy to prevent future incidents.</p><h4>Conclusion</h4><p>Overcoming a data loss crisis reinforces the importance of robust systems and professionalism. By staying organized and collaborative, you can restore control and turn a potential disaster into a demonstration of competence.</p>`,
+                ar: `<h4>المقدمة</h4><p>فقدان البيانات في مشروع إنشائي يعد أزمة كبرى، ولكن يمكن إدارتها بنهج هادئ ومنظم. المفتاح هو تأمين البيئة، تحليل الوضع، وإعادة بناء النظام بشكل منهجي.</p><h4>العناصر الأساسية</h4><ul><li>التقييم الفوري وتأمين النظام</li><li>جمع البيانات من جميع الأطراف</li><li>إعادة بناء السجلات بشكل منهجي</li><li>التواصل الواضح وتحديد الأولويات</li></ul><h4>الشرح</h4><p>الخطوة الأولى هي تأمين النظام بإلغاء الوصول القديم وتوثيق الحادث. بعد ذلك، ابدأ بجمع كل البيانات المتاحة: المستندات الورقية، رسائل البريد الإلكتروني من الفريق، والنسخ الرسمية من الاستشاريين والمقاولين. يجب فرز هذه البيانات وفهرستها في جدول Excel أولي. بالتزامن، أعد بناء سجل التسليمات الرئيسي (MDR) بناءً على عقد المشروع ونطاقه. أنشئ هيكل مجلدات ونظام تكويد مؤقت وبسيط. أعطِ الأولوية لاستعادة المستندات الحرجة مثل الرسومات المعتمدة (IFC) وموافقات المواد التي تؤثر على أنشطة الموقع الفورية. تواصل بمهنية مع جميع أصحاب المصلحة، موضحًا الموقف وطالبًا تعاونهم. أخيرًا، أنشئ نظامًا بسيطًا وقويًا (مثل SharePoint + Excel منظم) وطبّق سياسة النسخ الاحتياطي "3-2-1" لمنع الحوادث المستقبلية.</p><h4>الخاتمة</h4><p>التغلب على أزمة فقدان البيانات يعزز أهمية الأنظمة القوية والمهنية. من خلال البقاء منظمًا ومتعاونًا، يمكنك استعادة السيطرة وتحويل كارثة محتملة إلى إظهار للكفاءة.</p>`
+            }},
+          { id: 'article3', title: { en: 'Understanding ISO Standards for Document Control', ar: 'فهم معايير الأيزو للتحكم في المستندات' }, 
+            content: {
+                en: `<h4>Introduction</h4><p>Think of yourself as a librarian for a massive project. ISO standards are the set of laws that keep this library organized and prevent any document from getting lost. As a Document Controller, your role is to ensure the right document reaches the right person at the right time, securely.</p><h4>Core Elements</h4><ul><li>ISO 15489: Records Management</li><li>ISO 9001: Quality Management</li><li>ISO 27001: Information Security</li><li>ISO 21500: Project Management</li></ul><h4>Explanation</h4><p>ISO provides a golden framework for organizing documents. The document lifecycle—creation, review, approval, distribution, and archiving—is a core concept. ISO 15489 is the primary reference for this lifecycle. ISO 9001 ensures we use the correct, quality-approved version of a document. ISO 27001 governs the security of confidential information, and ISO 21500 relates to project documentation throughout its phases. These standards are not complex hurdles; they are a system to streamline your work and demonstrate a professional, structured approach.</p><h4>Conclusion</h4><p>Understanding ISO is not about memorizing numbers, but about adopting a mindset of quality, security, and organization. It elevates your role, saves time, and showcases your expertise in any professional setting.</p>`,
+                ar: `<h4>المقدمة</h4><p>تخيل نفسك أمين مكتبة لمشروع ضخم. معايير الأيزو هي مجموعة القوانين التي تحافظ على هذه المكتبة منظمة وتمنع ضياع أي مستند. بصفتك مراقب وثائق، دورك هو ضمان وصول المستند الصحيح للشخص الصحيح في الوقت الصحيح وبشكل آمن.</p><h4>العناصر الأساسية</h4><ul><li>أيزو 15489: إدارة السجلات</li><li>أيزو 9001: إدارة الجودة</li><li>أيزو 27001: أمن المعلومات</li><li>أيزو 21500: إدارة المشاريع</li></ul><h4>الشرح</h4><p>يوفر الأيزو إطارًا ذهبيًا لتنظيم المستندات. دورة حياة المستند - الإنشاء، المراجعة، الاعتماد، التوزيع، والأرشفة - هي مفهوم أساسي. أيزو 15489 هو المرجع الرئيسي لهذه الدورة. يضمن أيزو 9001 استخدامنا للنسخة الصحيحة والمعتمدة من حيث الجودة للمستند. يحكم أيزو 27001 أمان المعلومات السرية، ويتعلق أيزو 21500 بوثائق المشروع عبر جميع مراحله. هذه المعايير ليست عقبات معقدة؛ بل هي نظام لتبسيط عملك وإظهار نهج مهني منظم.</p><h4>الخاتمة</h4><p>فهم الأيزو لا يتعلق بحفظ الأرقام، بل بتبني عقلية الجودة والأمان والتنظيم. إنه يرتقي بدورك، ويوفر الوقت، ويعرض خبرتك في أي بيئة مهنية.</p>`
+            }},
+          { id: 'article4', title: { en: 'Acing the Document Controller Interview', ar: 'كيف تتفوق في مقابلة عمل مراقب الوثائق' },
+            content: {
+                en: `<h4>Introduction</h4><p>Success in a Document Controller interview is less about answering specific questions and more about demonstrating a deep understanding of your role and its impact on the project.</p><h4>Core Elements</h4><ul><li>Understanding the Document Lifecycle</li><li>Mastery of Coding Systems</li><li>Knowledge of ISO Standards</li><li>Communication & Administrative Skills</li></ul><h4>Explanation</h4><p>Your core function is to manage the document lifecycle, ensure security, and provide accurate reports. This requires proficiency with tools like Excel and Aconex, but more importantly, a mastery of the project's coding system and drawing numbers. You must also have a foundational knowledge of relevant ISO standards (9001, 21500) to understand the "why" behind the procedures. Furthermore, since you are a central hub for the team, strong communication and administrative skills are non-negotiable. Before the interview, assess yourself against these pillars. If you have these skills, you won't need to worry about any question, as you will answer with confidence.</p><h4>Conclusion</h4><p>A well-prepared candidate doesn't just answer questions; they leave a lasting impression as a true asset to the team. Focus on developing a holistic understanding of the role, and you will naturally excel.</p>`,
+                ar: `<h4>المقدمة</h4><p>النجاح في مقابلة عمل مراقب الوثائق لا يعتمد على إجابة أسئلة محددة بقدر ما يعتمد على إظهار فهم عميق لدورك وتأثيره على المشروع.</p><h4>العناصر الأساسية</h4><ul><li>فهم دورة حياة المستند</li><li>إتقان أنظمة التكويد</li><li>المعرفة بمعايير الأيزو</li><li>مهارات التواصل والإدارة</li></ul><h4>الشرح</h4><p>وظيفتك الأساسية هي إدارة دورة حياة المستند، وضمان الأمان، وتقديم تقارير دقيقة. هذا يتطلب إتقان أدوات مثل Excel و Aconex، والأهم من ذلك، إتقان نظام التكويد وأرقام الرسومات الخاص بالمشروع. يجب أن يكون لديك أيضًا معرفة أساسية بمعايير الأيزو ذات الصلة (9001، 21500) لفهم "السبب" وراء الإجراءات. علاوة على ذلك، بما أنك محور مركزي للفريق، فإن مهارات التواصل والإدارة القوية غير قابلة للتفاوض. قبل المقابلة، قيّم نفسك بناءً على هذه الركائز. إذا كنت تمتلك هذه المهارات، فلن تحتاج إلى القلق من أي سؤال، حيث ستجيب بثقة.</p><h4>الخاتمة</h4><p>المرشح المستعد جيدًا لا يجيب على الأسئلة فحسب؛ بل يترك انطباعًا دائمًا كأصل حقيقي للفريق. ركز على تطوير فهم شامل للدور، وستتفوق بشكل طبيعي.</p>`
+            }},
+          { id: 'article5', title: { en: 'Learning Excel for Document Control', ar: 'تعلم الإكسل لوظيفة مراقب الوثائق' },
+            content: {
+                en: `<h4>Introduction</h4><p>Excel is an indispensable tool for a Document Controller, used for tracking documents, managing workflows, and generating powerful reports. The key is to start with the basics and progressively build your skills.</p><h4>Core Elements</h4><ul><li>Document Tracking Logs</li><li>PivotTables for Reporting</li><li>Conditional Formatting for Alerts</li><li>Essential Formulas (VLOOKUP, IF, SUM)</li></ul><h4>Explanation</h4><p>As a Document Controller, you'll use Excel to track the flow of documents between contractors, consultants, and clients. By using PivotTables, you can quickly generate summary reports on document statuses. Conditional Formatting is excellent for automatically highlighting overdue or pending items, providing a clear visual cue. Start by mastering fundamental formulas like VLOOKUP (to find and link data), IF (for conditional logic), and SUM. With these basics, you can create professional-looking tracking sheets and charts that provide immense value. Today, AI assistants can even help generate complex formulas, making the learning curve even easier.</p><h4>Conclusion</h4><p>Don't wait to become an expert to start. Begin with the basics and apply them daily. Combining foundational Excel skills with AI tools will set you apart and significantly enhance your efficiency and professionalism.</p>`,
+                ar: `<h4>المقدمة</h4><p>يُعد Excel أداة لا غنى عنها لمراقب الوثائق، حيث يُستخدم لتتبع المستندات وإدارة سير العمل وإنشاء تقارير قوية. المفتاح هو البدء بالأساسيات وبناء مهاراتك تدريجيًا.</p><h4>العناصر الأساسية</h4><ul><li>سجلات تتبع المستندات</li><li>الجداول المحورية (PivotTables) لإعداد التقارير</li><li>التنسيق الشرطي للتنبيهات</li><li>الصيغ الأساسية (VLOOKUP, IF, SUM)</li></ul><h4>الشرح</h4><p>بصفتك مراقب وثائق، ستستخدم Excel لتتبع تدفق المستندات بين المقاولين والاستشاريين والعملاء. باستخدام الجداول المحورية، يمكنك إنشاء تقارير موجزة بسرعة عن حالات المستندات. التنسيق الشرطي ممتاز لتمييز العناصر المتأخرة أو المعلقة تلقائيًا، مما يوفر إشارة مرئية واضحة. ابدأ بإتقان الصيغ الأساسية مثل VLOOKUP (للبحث عن البيانات وربطها)، و IF (للمنطق الشرطي)، و SUM. بهذه الأساسيات، يمكنك إنشاء أوراق تتبع ومخططات احترافية ذات قيمة هائلة. اليوم، يمكن لمساعدي الذكاء الاصطناعي المساعدة في إنشاء صيغ معقدة، مما يجعل منحنى التعلم أسهل.</p><h4>الخاتمة</h4><p>لا تنتظر لتصبح خبيرًا لكي تبدأ. ابدأ بالأساسيات وطبقها يوميًا. إن الجمع بين مهارات Excel الأساسية وأدوات الذكاء الاصطناعي سيميزك ويعزز بشكل كبير من كفاءتك واحترافيتك.</p>`
+            }},
+          { id: 'article6', title: { en: 'The Critical Role of Access Control', ar: 'الدور الحاسم للتحكم في الوصول للمستندات' },
+            content: {
+                en: `<h4>Introduction</h4><p>A simple oversight in document management, like an open server, can lead to a major crisis. Ensuring proper access control is not a minor detail but a critical security function.</p><h4>Core Elements</h4><ul><li>Problem Identification: Unrestricted Access</li><li>Proposed Solution: Role-Based Access Control</li><li>Implementation: Document Classification</li><li>Result: Enhanced Security & Information Integrity</li></ul><h4>Explanation</h4><p>Discovering that a project server was accessible to all departments, including external contractors who could view sensitive contract details, presented a significant risk. The root cause was a lack of access permissions and document classification. The solution was to restructure access rights, granting each department access only to the documents relevant to their function. This involved classifying all documents and implementing a clear, documented access control policy. The result was secured project data, a reduced risk of information leaks, and more efficient access for authorized personnel.</p><h4>Conclusion</h4><p>This experience demonstrates that even the smallest details in document management can have a significant impact. Proactive identification and resolution of such security gaps are essential for protecting project integrity.</p>`,
+                ar: `<h4>المقدمة</h4><p>إن إغفال بسيط في إدارة المستندات، مثل خادم مفتوح للجميع، يمكن أن يؤدي إلى أزمة كبيرة. إن ضمان التحكم السليم في الوصول ليس تفصيلاً بسيطاً بل هو وظيفة أمنية حيوية.</p><h4>العناصر الأساسية</h4><ul><li>تحديد المشكلة: وصول غير مقيد</li><li>الحل المقترح: التحكم في الوصول القائم على الأدوار</li><li>التنفيذ: تصنيف المستندات</li><li>النتيجة: أمان معزز وسلامة المعلومات</li></ul><h4>الشرح</h4><p>إن اكتشاف أن خادم المشروع كان متاحًا لجميع الإدارات، بما في ذلك المقاولون الخارجيون الذين يمكنهم الاطلاع على تفاصيل العقود الحساسة، شكل خطرًا كبيرًا. كان السبب الجذري هو عدم وجود أذونات وصول وتصنيف للمستندات. كان الحل هو إعادة هيكلة حقوق الوصول، ومنح كل قسم حق الوصول فقط إلى المستندات المتعلقة بوظيفته. تضمن ذلك تصنيف جميع المستندات وتنفيذ سياسة واضحة وموثقة للتحكم في الوصول. كانت النتيجة تأمين بيانات المشروع، وتقليل مخاطر تسرب المعلومات، ووصول أكثر كفاءة للموظفين المصرح لهم.</p><h4>الخاتمة</h4><p>توضح هذه التجربة أن أصغر التفاصيل في إدارة المستندات يمكن أن يكون لها تأثير كبير. إن التحديد الاستباقي وحل هذه الثغرات الأمنية أمر ضروري لحماية سلامة المشروع.</p>`
+            }},
+          { id: 'article8', title: { en: 'Automating Document Control with Excel VBA', ar: 'أتمتة التحكم في الوثائق باستخدام Excel VBA' },
+            content: {
+                en: `<h4>Introduction</h4><p>In today's fast-paced environment, manual document management is inefficient. Learning to program Excel with VBA transforms this process into an intelligent, automated operation.</p><h4>Core Elements</h4><ul><li>Automated Archiving</li><li>Rapid Data Processing</li><li>Instant Document Access via Hyperlinks</li><li>Time Savings & Error Reduction</li></ul><h4>Explanation</h4><p>Imagine a system that automatically scans project folders and registers every document's details into a structured Excel sheet. With VBA, this is possible. This automated system doesn't just archive; it enables powerful data analysis. Using PivotTables and charts, you can instantly generate reports on document statuses. By programming the system to add hyperlinks to each entry, you can access any file directly from your report with a single click. This automation saves immense time, reduces human error from manual entry, and allows you to focus on strategic decision-making rather than administrative tasks.</p><h4>Conclusion</h4><p>Leveraging your resources intelligently is key to success. Learning Excel VBA elevates your document management capabilities to a professional level, turning tedious tasks into a streamlined, strategic advantage for any project.</p>`,
+                ar: `<h4>المقدمة</h4><p>في بيئة العمل سريعة الخطى اليوم، تعد إدارة المستندات اليدوية غير فعالة. إن تعلم برمجة Excel باستخدام VBA يحول هذه العملية إلى عملية ذكية ومؤتمتة.</p><h4>العناصر الأساسية</h4><ul><li>الأرشفة المؤتمتة</li><li>معالجة سريعة للبيانات</li><li>وصول فوري للمستندات عبر الروابط التشعبية</li><li>توفير الوقت وتقليل الأخطاء</li></ul><h4>الشرح</h4><p>تخيل نظامًا يقوم تلقائيًا بمسح مجلدات المشروع ويسجل تفاصيل كل مستند في جدول Excel منظم. مع VBA، هذا ممكن. هذا النظام المؤتمت لا يقوم بالأرشفة فقط؛ بل يتيح تحليل بيانات قوي. باستخدام الجداول المحورية والمخططات، يمكنك إنشاء تقارير فورية عن حالات المستندات. من خلال برمجة النظام لإضافة روابط تشعبية لكل إدخال، يمكنك الوصول إلى أي ملف مباشرة من تقريرك بنقرة واحدة. توفر هذه الأتمتة وقتًا هائلاً، وتقلل من الأخطاء البشرية الناتجة عن الإدخال اليدوي، وتتيح لك التركيز على اتخاذ القرارات الاستراتيجية بدلاً من المهام الإدارية.</p><h4>الخاتمة</h4><p>إن استغلال مواردك بذكاء هو مفتاح النجاح. تعلم Excel VBA يرتقي بقدراتك في إدارة المستندات إلى مستوى احترافي، محولاً المهام المملة إلى ميزة استراتيجية ومبسطة لأي مشروع.</p>`
+            }},
+          { id: 'article9', title: { en: 'Digitizing Archives with Python', ar: 'رقمنة الأرشيف الورقي باستخدام Python' },
+            content: {
+                en: `<h4>Introduction</h4><p>Transforming a paper-based archive into a digital system is a monumental task that can be simplified and accelerated using the power of Python programming.</p><h4>Core Elements</h4><ul><li>Digitization (Scanning)</li><li>Text Extraction (OCR)</li><li>Data Structuring with Pandas</li><li>Workflow Automation</li></ul><h4>Explanation</h4><p>The process begins by scanning paper documents into PDFs. Manually copying text from thousands of files is impractical; here, Python libraries like PyPDF2 or Tesseract OCR can automatically extract all text. This extracted data can then be organized and structured into an Excel sheet using the Pandas library, creating a searchable digital log. The next step is to establish a digital workflow using platforms like SharePoint or Aconex, where documents are routed for review and approval. Python can even interact with these platforms via APIs to automate file uploads and management. This turns a chaotic paper archive into a streamlined, efficient, and searchable electronic system.</p><h4>Conclusion</h4><p>Integrating Python programming into document management transforms you from a document coordinator into a systems architect. The ability to automate data extraction and organization is a powerful skill that turns paper-based chaos into digital order.</p>`,
+                ar: `<h4>المقدمة</h4><p>إن تحويل أرشيف ورقي إلى نظام رقمي مهمة ضخمة يمكن تبسيطها وتسريعها باستخدام قوة برمجة Python.</p><h4>العناصر الأساسية</h4><ul><li>الرقمنة (المسح الضوئي)</li><li>استخراج النصوص (OCR)</li><li>هيكلة البيانات باستخدام Pandas</li><li>أتمتة سير العمل</li></ul><h4>الشرح</h4><p>تبدأ العملية بمسح المستندات الورقية إلى ملفات PDF. نسخ النصوص يدويًا من آلاف الملفات غير عملي؛ هنا، يمكن لمكتبات Python مثل PyPDF2 أو Tesseract OCR استخراج جميع النصوص تلقائيًا. يمكن بعد ذلك تنظيم هذه البيانات المستخرجة وهيكلتها في جدول Excel باستخدام مكتبة Pandas، مما ينشئ سجلاً رقميًا قابلاً للبحث. الخطوة التالية هي إنشاء سير عمل رقمي باستخدام منصات مثل SharePoint أو Aconex، حيث يتم توجيه المستندات للمراجعة والموافقة. يمكن لـ Python حتى التفاعل مع هذه المنصات عبر واجهات برمجة التطبيقات (APIs) لأتمتة عمليات تحميل الملفات وإدارتها. هذا يحول أرشيفًا ورقيًا فوضويًا إلى نظام إلكتروني مبسط وفعال وقابل للبحث.</p><h4>الخاتمة</h4><p>إن دمج برمجة Python في إدارة المستندات يحولك من منسق وثائق إلى مهندس أنظمة. إن القدرة على أتمتة استخراج البيانات وتنظيمها هي مهارة قوية تحول الفوضى الورقية إلى نظام رقمي منظم.</p>`
+            }},
+          { id: 'article10', title: { en: 'The Future is Electronic Archiving', ar: 'الأرشفة الإلكترونية: مستقبل إدارة المستندات' },
+            content: {
+                en: `<h4>Introduction</h4><p>Electronic archiving is the process of converting all paper documents into an integrated digital system that is easily accessible, editable, and shareable, ensuring security and availability.</p><h4>Core Elements</h4><ul><li>Professional Data Organization</li><li>Cost & Time Savings</li><li>Improved Project Tracking</li><li>Enhanced Security & Confidentiality</li></ul><h4>Explanation</h4><p>Compared to traditional paper methods, which are bulky and prone to loss, electronic archiving offers instant searchability, high security, and easy collaboration. Implementing it involves several key steps: First, systematically classify files (e.g., by stakeholder). Second, use a clear coding system for easy retrieval. Third, train the team on the new tools (like SharePoint, Aconex, SAP) to ensure adoption. Finally, use the system's reporting features to gain a clear view of project progress. Investing in electronic archiving reduces administrative errors, boosts employee efficiency, and provides the analytics needed for sound, rapid decision-making.</p><h4>Conclusion</h4><p>Companies must invest in electronic archiving to reduce risks, increase efficiency, and ensure compliance with quality standards. It is a foundational step towards modern, data-driven project management.</p>`,
+                ar: `<h4>المقدمة</h4><p>الأرشفة الإلكترونية هي عملية تحويل جميع المستندات الورقية إلى نظام رقمي متكامل يمكن الوصول إليه وتعديله ومشاركته بسهولة، مما يضمن الأمان والتوافر.</p><h4>العناصر الأساسية</h4><ul><li>تنظيم احترافي للبيانات</li><li>توفير في التكلفة والوقت</li><li>تتبع محسن للمشروع</li><li>أمان وسرية معززة</li></ul><h4>الشرح</h4><p>مقارنة بالطرق الورقية التقليدية، التي تشغل مساحة كبيرة وعرضة للفقدان، توفر الأرشفة الإلكترونية إمكانية بحث فورية وأمانًا عاليًا وسهولة في التعاون. يتضمن تطبيقها عدة خطوات رئيسية: أولاً، تصنيف الملفات بشكل منهجي (على سبيل المثال، حسب أصحاب المصلحة). ثانيًا، استخدام نظام تكويد واضح لسهولة الاسترجاع. ثالثًا، تدريب الفريق على الأدوات الجديدة (مثل SharePoint، Aconex، SAP) لضمان التبني. أخيرًا، استخدم ميزات إعداد التقارير في النظام للحصول على رؤية واضحة لتقدم المشروع. إن الاستثمار في الأرشفة الإلكترونية يقلل من الأخطاء الإدارية، ويعزز كفاءة الموظفين، ويوفر التحليلات اللازمة لاتخاذ قرارات سليمة وسريعة.</p><h4>الخاتمة</h4><p>يجب على الشركات الاستثمار في الأرشفة الإلكترونية لتقليل المخاطر وزيادة الكفاءة وضمان الامتثال لمعايير الجودة. إنها خطوة أساسية نحو إدارة مشاريع حديثة ومبنية على البيانات.</p>`
+            }},
+      ];
+
+      function renderKnowledgeArticles() {
+          if (!knowledgeContainer) return;
+          knowledgeContainer.innerHTML = ''; // Clear existing articles
+          articles.forEach(article => {
+              const articleHTML = `
+                <div class="bg-bg-card p-6 rounded-lg border border-border-color flex flex-col group transform hover:-translate-y-1 transition-transform duration-300" data-aos="fade-up">
+                    <h3 class="font-bold text-lg mb-2 flex-grow">${article.title[currentLang]}</h3>
+                    <button class="knowledge-card-btn mt-4 text-sm font-semibold text-accent-primary self-start" data-article-id="${article.id}">
+                        <span data-key="readArticleBtn">${translations.readArticleBtn[currentLang]}</span> &rarr;
+                    </button>
+                </div>
+              `;
+              knowledgeContainer.innerHTML += articleHTML;
+          });
+
+          // Re-attach event listeners after rendering
+          document.querySelectorAll('.knowledge-card-btn').forEach(button => {
+              button.addEventListener('click', () => {
+                  const articleId = button.dataset.articleId;
+                  const article = articles.find(a => a.id === articleId);
+                  if (article) {
+                      knowledgeModalTitle.textContent = article.title[currentLang];
+                      knowledgeModalBody.innerHTML = article.content[currentLang];
+                      knowledgeModal.classList.remove('opacity-0', 'pointer-events-none');
+                      knowledgeModalContent.classList.remove('scale-95');
+                  }
+              });
+          });
+      }
+
+      knowledgeModalClose.addEventListener('click', () => closeModal(knowledgeModal, knowledgeModalContent));
+      knowledgeModal.addEventListener('click', (e) => { if (e.target === knowledgeModal) closeModal(knowledgeModal, knowledgeModalContent); });
+      
+      // ========================================================================
+      // GEMINI API INTEGRATION
+      // ========================================================================
+      const geminiModal = document.getElementById('geminiModal');
+      const geminiModalContent = document.getElementById('geminiModalContent');
+      const geminiModalTitle = document.getElementById('geminiModalTitle');
+      const geminiModalBody = document.getElementById('geminiModalBody');
+      const geminiModalClose = document.getElementById('geminiModalClose');
+      const improveAboutBtn = document.getElementById('improve-about-btn');
+
+      const openGeminiModal = (title) => {
+        geminiModalTitle.innerHTML = title;
+        geminiModalBody.innerHTML = `<div class="flex justify-center items-center"><div class="loader"></div><p class="ml-4" data-key="geminiLoading">${translations.geminiLoading[currentLang]}</p></div>`;
+        geminiModal.classList.remove('opacity-0', 'pointer-events-none');
+        geminiModalContent.classList.remove('scale-95');
+      };
+
+      const closeGeminiModal = () => closeModal(geminiModal, geminiModalContent);
+      geminiModalClose.addEventListener('click', closeGeminiModal);
+      geminiModal.addEventListener('click', (e) => { if(e.target === geminiModal) closeGeminiModal(); });
+
+      async function callGeminiAPI(prompt, title) {
+        openGeminiModal(title);
+        
+        const apiKey = ""; // Leave empty
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+        const payload = {
+            contents: [{ parts: [{ text: prompt }] }],
+            systemInstruction: {
+              parts: [{
+                text: "You are a professional career and technical writing assistant. Your responses should be structured, insightful, and helpful, using markdown for formatting like lists and bold text."
+              }]
+            }
+        };
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("API Error:", errorData);
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            const candidate = result.candidates?.[0];
+
+            if (candidate && candidate.content?.parts?.[0]?.text) {
+                let text = candidate.content.parts[0].text;
+                // Basic markdown to HTML
+                text = text
+                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                  .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                  .replace(/^- (.*$)/gm, '<ul><li>$1</li></ul>') // Basic list items
+                  .replace(/<\/ul>\s*<ul>/g, '') // Merge consecutive lists
+                  .replace(/\n/g, '<br>');
+                geminiModalBody.innerHTML = text;
+            } else {
+                console.error("Invalid response structure:", result);
+                throw new Error("Invalid response structure from API");
+            }
+        } catch (error) {
+            console.error("Gemini API call failed:", error);
+            geminiModalBody.innerHTML = `<p class="text-red-500">Sorry, an error occurred. The content might be blocked or the service is temporarily unavailable. Please try again later.</p>`;
+        }
+      }
+
+      improveAboutBtn.addEventListener('click', () => {
+        const aboutText = document.querySelector('[data-key="aboutPara"]').textContent;
+        const prompt = currentLang === 'ar'
+            ? `بصفتك مستشارًا مهنيًا خبيرًا، قم بمراجعة قسم "نبذة عني" التالي من ملف شخصي لمراقب وثائق أول. قدم 3 اقتراحات قابلة للتنفيذ لجعله أكثر تأثيرًا وجاذبية لمديري التوظيف. اجعل الاقتراحات موجزة ومهنية، مع أمثلة. النص هو: "${aboutText}"`
+            : `As an expert career coach, review the following "About Me" section from a portfolio for a Senior Document Controller. Provide 3 actionable suggestions to make it more impactful for recruiters. Keep the suggestions concise and professional, with examples. The text is: "${aboutText}"`;
+        
+        callGeminiAPI(prompt, translations.geminiModalTitle[currentLang]);
+      });
+
+      document.body.addEventListener('click', (e) => {
+        if (e.target.closest('.gemini-questions-btn')) {
+            const btn = e.target.closest('.gemini-questions-btn');
+            const expKey = btn.dataset.experience;
+            const experience = translations.experienceDetails[expKey];
+            const title = experience.title[currentLang];
+            // Remove the button HTML before sending to the API
+            const content = experience.content[currentLang].replace(/<div class="mt-4.*<\/div>/, '').trim();
+
+            const prompt = currentLang === 'ar'
+                ? `بصفتك مدير توظيف في شركة إنشاءات كبرى، استنادًا إلى وصف الخبرة الوظيفية هذا، قم بتوليد 3 أسئلة مقابلة ثاقبة قد أُسأل عنها حول هذا الدور. ركز على المسؤوليات والإنجازات المذكورة. الخبرة هي: "${title}\n${content}"`
+                : `As a hiring manager for a major construction firm, based on this job experience description, generate 3 insightful interview questions that I might be asked about this role. Focus on the responsibilities and achievements mentioned. The experience is: "${title}\n${content}"`;
+            
+            callGeminiAPI(prompt, translations.geminiModalTitle[currentLang]);
+        }
+      });
+      
+        // --- Share Logic ---
+        const shareBtn = document.getElementById('share-btn');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+
+        const showToast = (message) => {
+            toastMessage.textContent = message;
+            toast.classList.remove('opacity-0', 'translate-y-2');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+            }, 3000);
+        };
+
+        if (shareBtn) {
+             shareBtn.addEventListener('click', () => {
+                try {
+                    // Fallback for iframe environments or restricted permissions
+                    const textArea = document.createElement("textarea");
+                    textArea.value = window.location.href;
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    showToast(translations.linkCopied[currentLang]);
+                } catch (err) {
+                     console.error("Copy to clipboard failed:", err);
+                }
+            });
+        }
+        
+      // Initial language set after all listeners are attached
+      setLanguage(currentLang);
+
+    });
+  </script>
+</body>
+</html>
+
+
