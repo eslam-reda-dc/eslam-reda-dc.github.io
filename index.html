@@ -1314,6 +1314,47 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 </script>
 
+<style id="portfolio-mobile-motion-style">
+:root{--motion-ease:cubic-bezier(.22,1,.36,1)}
+html{scroll-behavior:smooth;scroll-padding-top:94px}body{overflow-x:clip}
+.nasq-hero{position:relative;isolation:isolate;overflow:hidden}
+.nasq-hero:after{content:"";position:absolute;inset:-42%;z-index:-1;background:conic-gradient(from 120deg at 50% 50%,transparent 0deg,rgba(37,99,235,.07) 55deg,transparent 112deg,rgba(20,184,166,.065) 210deg,transparent 290deg);animation:ambientOrbit 24s linear infinite;pointer-events:none}
+@keyframes ambientOrbit{to{transform:rotate(360deg)}}
+.motion-ready{opacity:0;transform:translateY(22px);transition:opacity .72s var(--motion-ease),transform .78s var(--motion-ease);transition-delay:var(--motion-delay,0ms)}
+.motion-ready.motion-visible{opacity:1;transform:translateY(0)}
+.premium-card,.workflow-step,.role-pill,.hero-actions a,#experience article{transition:transform .32s var(--motion-ease),box-shadow .32s var(--motion-ease),border-color .28s ease,background-color .28s ease}
+@media(hover:hover){.premium-card:hover,#experience article:hover{transform:translateY(-5px);box-shadow:0 18px 38px rgba(15,23,42,.11)}.hero-actions a:hover{transform:translateY(-2px)}}
+.document-flow{position:relative}.document-flow .workflow-step{position:relative;overflow:hidden}.document-flow .workflow-step:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 24%,rgba(255,255,255,.16) 48%,transparent 70%);transform:translateX(-125%);pointer-events:none}.document-flow.flow-visible .workflow-step:after{animation:flowSheen 1.2s var(--motion-ease) both;animation-delay:calc(var(--flow-index,0)*140ms)}
+@keyframes flowSheen{to{transform:translateX(125%)}}
+.document-flow .workflow-arrow svg{animation:arrowBreathe 1.7s ease-in-out infinite}
+@keyframes arrowBreathe{0%,100%{opacity:.56}50%{opacity:1}}
+@media(max-width:767px){
+ html{scroll-padding-top:82px}body{padding-top:74px!important;overflow-x:hidden}main,.container{max-width:100%!important}section{scroll-margin-top:84px}
+ #sticky-nav{top:8px!important;width:calc(100% - 24px)!important;max-width:calc(100vw - 24px)!important;padding:8px 12px!important;min-height:51px;border-radius:19px!important;box-sizing:border-box}
+ .nasq-hero{padding:20px 17px!important;margin-bottom:30px!important;border-radius:23px!important}.hero-name{font-size:clamp(2rem,9vw,2.8rem)!important}.hero-role,.hero-copy{max-width:100%;overflow-wrap:anywhere}.hero-photo{width:84px!important;height:94px!important}.hero-pills{gap:7px!important}.role-pill{font-size:11px!important;padding:6px 9px!important}.hero-actions{gap:8px!important}.hero-actions a{font-size:11px!important;padding:9px 10px!important}
+ .section-title,.section-heading{max-width:100%;min-width:0!important;overflow:visible!important;line-height:1.45!important;overflow-wrap:anywhere}.section-title{font-size:clamp(1.14rem,5.5vw,1.55rem)!important;gap:9px!important}.section-title svg{width:20px!important;height:20px!important;flex:0 0 20px!important}html[dir="rtl"] .section-title{justify-content:flex-start;text-align:right}
+ #experience>.space-y-4>article{padding:13px!important;gap:10px!important}.premium-card,.project-card{overflow-wrap:anywhere}.metric-number{line-height:1.1!important}
+ .document-flow{width:100%;max-width:470px;margin:20px auto 12px!important;padding:18px 12px!important;gap:0!important;border:1px solid rgba(37,99,235,.12);border-radius:22px;background:linear-gradient(145deg,rgba(37,99,235,.045),rgba(20,184,166,.055));box-sizing:border-box}
+ .document-flow .workflow-step{width:calc(100% - 16px)!important;min-height:61px;padding:14px 15px!important;border-radius:16px!important;display:flex;align-items:center;justify-content:center;box-shadow:0 7px 18px rgba(15,23,42,.07)!important;animation:flowCardIn .62s var(--motion-ease) both;animation-delay:calc(var(--flow-index,0)*115ms)}
+ .document-flow .workflow-step h4{font-size:15px!important;line-height:1.5!important;margin:0!important}.document-flow .workflow-step:before{content:attr(data-flow-step);position:absolute;inset-inline-start:12px;width:23px;height:23px;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:800;color:var(--accent-primary,#2563eb);background:rgba(37,99,235,.085)}
+ .document-flow .workflow-arrow{height:34px!important;width:38px!important;margin:2px auto!important;display:flex;align-items:center;justify-content:center;transform:none!important}.document-flow .workflow-arrow svg{width:23px!important;height:23px!important;transform:rotate(90deg)!important;animation:arrowDown 1.5s ease-in-out infinite!important}
+ @keyframes arrowDown{0%,100%{transform:rotate(90deg) translateX(-2px);opacity:.52}55%{transform:rotate(90deg) translateX(4px);opacity:1}}@keyframes flowCardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(prefers-reduced-motion:reduce){.nasq-hero:after,.document-flow .workflow-arrow svg,.document-flow .workflow-step,.document-flow .workflow-step:after{animation:none!important}.motion-ready{opacity:1!important;transform:none!important;transition:none!important}}
+</style>
+<script id="portfolio-mobile-motion-script">
+document.addEventListener('DOMContentLoaded',function(){
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const first=document.querySelector('.workflow-step');
+  if(first&&first.parentElement){const flow=first.parentElement;flow.classList.add('document-flow');flow.querySelectorAll('.workflow-step').forEach((card,index)=>{card.style.setProperty('--flow-index',index);card.setAttribute('data-flow-step',String(index+1).padStart(2,'0'));});flow.classList.add('flow-visible');}
+  if(reduced||!('IntersectionObserver'in window))return;
+  const observed=new WeakSet();
+  const watcher=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('motion-visible');watcher.unobserve(entry.target);}}),{threshold:.10,rootMargin:'0px 0px -24px 0px'});
+  function watchCards(){document.querySelectorAll('.premium-card,.project-card,.case-card,.recommendation-card,#experience article').forEach((card,index)=>{if(observed.has(card))return;observed.add(card);card.style.setProperty('--motion-delay',Math.min(index%4*65,195)+'ms');card.classList.add('motion-ready');watcher.observe(card);});}
+  watchCards();requestAnimationFrame(watchCards);setTimeout(watchCards,800);
+});
+</script>
+
 </body>
 </html>
 
