@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eslam-reda-dc.github.io/sitemap.xml
+Sitemap: https://eslam-reda-dc.github.io/nasq-project-solutions/sitemap.xml
